@@ -1,2 +1,2 @@
-# TFGPT
-Tongji Financial Large Language Model
+# CFGPT
+Chinese Financial Assistant with Large Language Model
