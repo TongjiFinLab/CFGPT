@@ -1,0 +1,33 @@
+# basic setting
+model_name: path/of/your/supervised/finetuning/model
+dataset: path/to/your/supervised/finetuning/dataset
+dataset_eval: path/to/your/evaluate/dataset
+deepspeed: ./ds_config.json
+seed: 42
+max_seq_length: 2048
+# train setting 
+output_dir: ./lora_bf_16_parallel_train
+num_train_epochs: 1
+per_device_train_batch_size: 8
+per_device_eval_batch_size: 8
+gradient_accumulation_steps: 1
+learning_rate: 2.0e-4
+weight_decay: 0.01
+warmup_steps: 500
+fp16: 0
+bf16: 1
+torch_compile: 0
+save_strategy: steps
+save_steps: 500
+evaluation_strategy: steps
+eval_steps: 100
+logging_steps: 10
+remove_unused_columns: 0
+# lora setting
+rank: 64
+lora_alpha: 16
+lora_dropout: 0.05
+target_modules: ['k_proj', 'o_proj', 'down_proj', 'v_proj', 'q_proj', 'gate_proj', 'up_proj']
+bias: 'none'
+# restart info
+resume_from_checkpoint: null

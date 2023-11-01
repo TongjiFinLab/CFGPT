@@ -1,0 +1,21 @@
+# basic setting
+model_name: path/of/your/further/pretrain/model
+dataset: path/to/your/further/pretrain/dataset
+deepspeed: ./ds_config.json
+seed: 42
+max_seq_length: 2048
+# train setting 
+output_dir: ./bf_16_parallel_train
+logging_steps: 10
+num_train_epochs: 1
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 16
+learning_rate: 2.0e-4
+weight_decay: 0.01
+warmup_steps: 1000
+save_steps: 1000
+fp16: 0
+bf16: 1
+torch_compile: 0
+save_strategy: steps
+remove_unused_columns: 0

@@ -1,0 +1,1 @@
+deepspeed --include localhost:0,1 --master_port 60005 lora_bf_16_parallel_train.py --config lora_bf_16_parallel_train.yml > lora_bf_16_parallel_train.log 2>&1

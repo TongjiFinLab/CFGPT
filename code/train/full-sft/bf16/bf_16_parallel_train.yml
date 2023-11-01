@@ -1,0 +1,25 @@
+# basic setting
+model_name: path/of/your/supervised/finetuning/model
+dataset: path/to/your/supervised/finetuning/dataset
+dataset_eval: path/to/your/evaluate/dataset
+deepspeed: ./ds_config.json
+seed: 42
+max_seq_length: 2048
+# train setting 
+output_dir: ./bf_16_parallel_train
+num_train_epochs: 2
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 2
+gradient_accumulation_steps: 4
+learning_rate: 5.0e-5
+weight_decay: 0.01
+warmup_steps: 1000
+fp16: 0
+bf16: 1
+torch_compile: 0
+save_strategy: steps
+save_steps: 10
+evaluation_strategy: steps
+eval_steps: 5
+logging_steps: 4
+remove_unused_columns: 0
