@@ -22,7 +22,7 @@
     - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): 基于我们继续预训练模型的由PEFT（LoRA）训练的适配器模型权重。
     - [Supervised Finetuned Model (Full)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full): 基于我们继续预训练模型的进一步全参数微调的完整模型训练权重。
 
-- 我们还发布了[CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark)，这是一个中文金融基准测试，包括3924个金融文本，涵盖三个方面和八个任务，用于评估中文金融市场中LLM（大型语言模型）的金融文本处理能力。
+- 我们还发布了[CFBenchmark](https://github.com/TongjiFinLab/CFBenchmark)，这是一个针对大语言模型的中文金融基准测试。基础版本的CFBenchmark包括3917个金融文本，涵盖三个方面和八个任务，用于评估中文金融市场中LLM（大型语言模型）的金融文本处理能力。
 
 - 我们还发布了CFGPT的进一步预训练和指导微调的代码。
 
@@ -425,7 +425,7 @@ Deepspeed训练参数在 **`./code/train/lora/bf16/ds_config.json`**:
 
 # 评测基准
 
-我们发布了[CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark)，这是一个中国金融基准测试，包括3924个跨足三个方面和八个任务的金融文本，用于评估中文金融市场上LLM（大型语言模型）的金融文本处理能力。
+我们发布了[CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark)，这是一个中国金融基准测试，包括3917个跨足三个方面和八个任务的金融文本，用于评估中文金融市场上LLM（大型语言模型）的金融文本处理能力。
 
 CFBenchmark-Basic利用两种类型的指标来评估LLM在金融领域上的性能。对于识别和分类任务，我们采用**F1分数**作为评估指标，以平衡精度和召回率。对于生成任务，我们使用生成答案的向量表示与真实答案之间的**余弦相似度**来衡量生成能力。由于在生成任务中通常存在着相似含义的不同表达，简单地使用Rough-Score 或 BULE-socre是不合理的。具体地，我们指定**bge-zh-v1.5**作为生成句子嵌入的权威模型。我们分别计算每个子任务的评估分数，并提供每个类别的平均分数。
 

@@ -23,7 +23,7 @@ In this repository, we will share the following models and code.
     - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): Adapter model weights trained by PEFT (LoRA).
     - [Supervised Finetuned Model (Full)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full): Full model trained weights based on the pretrained model.
 
-- We release the [CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark), a chinese finance benchmark, including 3924 financial texts spanning three aspects and eight tasks, for the evaluation of the financial text processing capability of LLMs in Chinese financial market.
+- We release the [CFBenchmark](https://github.com/TongjiFinLab/CFBenchmark), a Chinese financial assistant benhmark for large language model. The basic version of CFBenchmark includes 3917 financial texts spanning three aspects and eight tasks, for the evaluation of the financial text processing capability of LLMs in Chinese financial market.
 
 - We release the code of further pretrain and instruction tuning of CFGPT.
 
@@ -421,7 +421,7 @@ The deepspeed parameters we use are in **`./code/train/lora/bf16/ds_config.json`
 
 # Benchmark
 
-We release the [CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark), a chinese finance benchmark, including 3924 financial texts spanning three aspects and eight tasks, for the evaluation of the financial text processing capability of LLMs in Chinese financial market.
+We release the [CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark), a chinese finance benchmark, including 3917 financial texts spanning three aspects and eight tasks, for the evaluation of the financial text processing capability of LLMs in Chinese financial market.
 
 CFBenchmark-Basic utilize two types of metrics to evaluate the performance of LLMs in the financial domain on our CFBenchmark-Basic. 
 For recognition and classification tasks, we employe the **F1 score** as the evaluation metric, which balance the precision and recall.  
