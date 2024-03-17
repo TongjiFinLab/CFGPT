@@ -116,7 +116,8 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 # 典型使用案例
 
-- 
+- [银行业场景使用案例](cases/case_bank.md)
+- [CFGPTv1 典型数据案例介绍](cases/case_CFGPTv1.md)
 
 # 
 
