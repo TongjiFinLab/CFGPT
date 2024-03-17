@@ -388,6 +388,11 @@ CFGPT已参考了以下开源项目。我们要向这些项目的研究者表示
 # 使用许可
 CFGPT是一个研究预览版本，仅供非商业用途，受InternLM模型许可证和OpenAI生成数据的使用条款的约束。如果您发现任何潜在的违规行为，请与我们联系。该代码在Apache许可证2.0下发布。
 
+### 感谢我们的贡献者 :
+<a href="https://github.com/TongjiFinLab/CFGPT/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=TongjiFinLab/CFGPT" />
+</a>
+
 # 引用
 如果您使用 [**CFGPT**](https://arxiv.org/abs/2309.10654) 的代码或模型，请使用以下方式声明引用：
 
