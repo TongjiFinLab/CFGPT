@@ -116,10 +116,10 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 # 典型使用案例
 
-- [银行业场景使用案例](cases/case_bank.md)
-- [CFGPTv1 典型数据案例介绍](cases/case_CFGPTv1.md)
+- [CFGPT-v2-13B 银行业场景使用案例](cases/case_bank.md)
+- [CFGPT-v1-7B 典型数据案例介绍](cases/case_CFGPTv1.md)
 
-# 
+
 
 # 数据集
 
