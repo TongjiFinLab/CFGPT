@@ -37,9 +37,9 @@
 # 目录
 
 - [快速使用](#快速使用)
+- [典型使用案例](#典型使用案例)
 - [数据集](#数据集)
 - [代码](#代码)
-- [数据示例](#数据示例)
 - [评测基准](#评测基准)
 - [致谢](#致谢)
 - [未来工作](#未来工作)
@@ -118,8 +118,6 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 - [CFGPT-v2-13B 银行业场景使用案例](cases/case_bank.md)
 - [CFGPT-v1-7B 典型数据案例介绍](cases/case_CFGPTv1.md)
-
-
 
 # 数据集
 
