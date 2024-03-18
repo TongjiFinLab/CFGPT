@@ -122,6 +122,7 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 - [CFGPT-v2-13B User Cases about Banking](cases/case_bank.md)
 - [CFGPT-v2-13B User Cases about Algorithm Trading](cases/case_algor_trading.md)
+- [CFGPT-v2-13B User Cases about Primary Industry](cases/case_primary_industry.md)
 - [CFGPT-v1-7B Dataset Cases](cases/case_CFGPTv1.md)
 
 # Data
