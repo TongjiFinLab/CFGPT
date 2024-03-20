@@ -3,79 +3,79 @@
 在这一次的对话中，我们聚焦金融场景中的算法交易和CFGPT展开对话：
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/A.png width="50%"/>
+<img align="center" src=cimges/algor_trading/A.png width="75%"/>
 </div>
 
 在这一轮对话中，我向CFGPT询问了关于算法交易的基本概念。CFGPT解释了算法交易如何利用数学和统计模型来辅助金融决策的，并列出了算法交易的主要优点。此外，CFGPT还指出了算法交易的一些缺点和挑战，提醒用户在使用时需要谨慎评估。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/B-1.png width="50%"/>
+<img align="center" src=cimges/algor_trading/B-1.png width="75%"/>
 </div>
 
 在接下来的对话中，我接着上一个问题询问了算法交易中所需的数据模型和算法。CFGPT的回答涵盖了五种数据模型和七类算法，从时间序列数据到社交网络连接的数据模型，以及从时间序列分析到机器学习和统计学习算法。此外在列出各种算法时，CFGPT还具体到了ARIMA模型、固定效应模型等专业术语，便于用户进一步咨询和查证。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/C-1-1.png width="50%"/>
+<img align="center" src=cimges/algor_trading/C-1-1.png width="75%"/>
 </div>
 
 在这一轮对话中，我在算法交易模型的基础上，进一步询问了时间序列分析方法在算法交易中的作用。CFGPT阐述了时间序列分析方法的作用，并客观的解释了这些方法如何使交易者能够基于历史数据分析来制定策略，并提高市场决策的准确性。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/C-1-2.png width="50%"/>
+<img align="center" src=cimges/algor_trading/C-1-2.png width="75%"/>
 </div>
 
 紧接着，我继续询问了量化领域中的基本交易策略。CFGPT提供了一个详细的列表，覆盖了从趋势跟踪到风险管理的多种策略。这一回答提供了一个策略概览，还指出了每种策略的核心原理和应用场景。此外，CFGPT还强调了这些策略可以单独使用或结合使用来实现更复杂的投资策略。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/D-1-2-1.png width="50%"/>
+<img align="center" src=cimges/algor_trading/D-1-2-1.png width="75%"/>
 </div>
 
 基于此前的算法交易策略，我进一步探询了动量及动量交易的概念。CFGPT提供了对应的解释，并强调了动量策略的基本假设：价格变化趋势若快速上涨或下跌，则该趋势有可能继续。此外，CFGPT提到了动量交易的高风险高回报特性，并强调了密切关注市场动态和进行风险管理的重要性。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/D-1-2-2.png width="50%"/>
+<img align="center" src=cimges/algor_trading/D-1-2-2.png width="75%"/>
 </div>
 
 在这一轮对话中，我针对此前提到的两种策略进行了对比式提问，询问了动量交易与趋势跟踪之间的区别。CFGPT明确地区分了这两种策略的侧重点：动量交易关注的是价格变化的速率（加速度），而趋势跟踪侧重于价格的长期趋势方向。CFGPT又进一步解释了动量交易倾向于快速反应短期价格变动，而趋势跟踪则在确认趋势形成后采取行动，且后者相对于动量交易在风险管理上可能更为温和。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/B-2.png width="50%"/>
+<img align="center" src=cimges/algor_trading/B-2.png width="75%"/>
 </div>
 
 在这一轮对话中，回到了算法交易本身，让CFGPT比较算法交易相对于传统交易的优势。CFGPT详尽地列出了算法交易的多项优势，包括快速决策、高效率、分散化投资等。客观上来说算法交易的“通过技术和算法的应用，提高交易的速度和效率，同时减少人为错误和情绪波动的影响"的特性在回答中基本都得到了体现。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/C-2-1.png width="50%"/>
+<img align="center" src=cimges/algor_trading/C-2-1.png width="75%"/>
 </div>
 
 在这一轮对话中，我在此前优势的基础上，进一步询问了算法交易具有适应性的原因。CFGPT的回答强调了量化系统能够实时监控市场动态并快速响应新的市场信号或趋势，还提到了机器学习和人工智能技术在优化和改进量化模型中的作用。这一回答说明了算法交易如何利用先进技术灵活应对市场变化，体现CFGPT学习到了复杂技术应用对金融交易影响。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/C-2-2.png width="50%"/>
+<img align="center" src=cimges/algor_trading/C-2-2.png width="75%"/>
 </div>
 
 在这一轮对话中，沿着此前流动性概念的介绍，我进一步探询了算法交易对市场流动性的影响。CFGPT的回答讨论了算法交易如何在增加市场交易量和活跃度方面起到积极作用，同时也指出了过度的算法交易可能导致市场不稳定和不公平竞争的负面效应。CFGPT的回答进一步强调了在适当的监管下，算法交易可以促进市场的健康发展。上述回答，说明了CFGPT学习到了从正反两个方面分析算法交易并进行风险提示的能力。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/B-3.png width="50%"/>
+<img align="center" src=cimges/algor_trading/B-3.png width="75%"/>
 </div>
 
 在这一轮对话中，我在此回到了算法交易的基础特点，向CFGPT询问了算法交易存在的风险。CFGPT详细列出并解释了包括模型失效、数据偏差、黑天鹅事件、交易成本以及合规风险在内的几个主要风险因素。这一回答探讨了算法交易的潜在挑战和风险，还提醒投资者和监管机构需要采取适当的风险管理和监管措施来应对，说明CFGPT有学习到了金融风险的提示能力。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/C-3-1.png width="50%"/>
+<img align="center" src=cimges/algor_trading/C-3-1.png width="75%"/>
 </div>
 
 针对风险中提及的黑天鹅事件，在这一轮对话中，我进一步询问了黑天鹅事件如何影响算法交易并导致失误。CFGPT首先解释了黑天鹅事件的定义，并进一步解释了算法交易无法及时或正确地应对那些难以预测事件的原因。CFGPT的回答进一步指出，算法交易者应密切关注市场动态并采取适当的风险管理措施以减轻黑天鹅事件的潜在影响。这一回答展现了CFGPT对于金融突发事件的影响有一定的理解能力，可以为用户有效的进行风险提示。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/C-3-2.png width="50%"/>
+<img align="center" src=cimges/algor_trading/C-3-2.png width="75%"/>
 </div>
 
 在这一轮对话中，我询问了算法交易是否能影响市场波动。CFGPT的回答确认了算法交易确实能通过多种方式对市场波动造成影响，并解释了这些交易策略是如何通过快速买卖、利用市场价格差异和执行大量订单来影响市场价格和波动的。同时，CFGPT也提到了算法交易增加市场波动和风险的可能性，强调了监管机构在确保市场公平和透明方面的作用，以及投资者需要采取的风险管理措施。这一回答不仅展示了CFGPT对算法交易影响市场波动机制有一定理解能力，还提醒了投资者和监管者关注算法交易可能带来的市场影响。
 
 <div align="center">
-<img align="center" src=cimges/algor_trading/E.png width="80%"/>
+<img align="center" src=cimges/algor_trading/E.png width="98%"/>
 </div>
 
 最后，我将整个对话过程绘制成了以上的思维导图。从思维导图中，我们可以看到，在整个对话过程中，CFGPT对算法交易的多个方面进行了解释和分析。从基本概念到策略，再到对市场流动性的影响以及潜在的风险，CFGPT都对应进行了分析。这段对话和相应的框图展示了CFGPT在以下几个方面的价值：
