@@ -17,8 +17,7 @@ We introduce **CFGPT**, an open-source language model trained by firstly further
 As for preliminary evaluation, we use CFBenchmark-Basic. 
 CFGPT outperforms the baselines on objective and subjective tasks compared to several baseline models with similar parameters. 
 
-In this repository, we will share the following models and code.
-
+- We develop CFGPT2 (13B), which is not only a more powerful Chinese financial large model but also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
 - We release CFGPT1 (7B) in three parts:
   - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): Full model weights after further pretraining with the chinese finance text corpus to comply with the InternLM model license. 
   - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): Adapter model weights trained by PEFT (LoRA).
@@ -43,7 +42,7 @@ In this repository, we will share the following models and code.
 - [User Cases](#user-cases)
 - [Data](#data)
 - [Code](#code)
-- [Benchmark](#benchmark)
+- [Evaluation](#evaluation)
 - [Acknowledgements](#acknowledgements)
 - [To-Do List](#to-do-list)
 - [License](#license)
@@ -348,18 +347,43 @@ The deepspeed parameters we use are in **`./code/train/lora/bf16/ds_config.json`
 }
 ```
 
-# Benchmark
+# Evaluation
 
-We release the [CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark), a chinese finance benchmark, including 3917 financial texts spanning three aspects and eight tasks, for the evaluation of the financial text processing capability of LLMs in Chinese financial market.
+The performance of our CFGPT2 (13B) is shown as follows:
 
-CFBenchmark-Basic utilize two types of metrics to evaluate the performance of LLMs in the financial domain on our CFBenchmark-Basic. 
-For recognition and classification tasks, we employe the **F1 score** as the evaluation metric, which balance the precision and recall.  
-For the generation tasks, we utilize **cosine similarity** between the vectored representation of ground truth and generated answer as measure the generation ability.  Since there are usually different expressions with the similar meaning in our generation tasks, simply employing Rough-Score or BULE-socre is not reasonable. Specifically, the **bge-zh-v1.5** is assigned as the oracle model to generate the sentence embedding. We calculate evaluation scores for each sub-task individually and provide the average score for each category.
+## C-Eval
 
-The best scores of LLMs (considering zero-shot and few-shot),as well as which of our model,  are demonstrated below:
+| Model              | Size | STEM      | Social Science | Humanities | Others  | Average | Average(hard) |
+| ------------------ | ---- | -------   | ------         | -----      | ------  | -----   | -------       |
+| GPT-4              | -    | **67.1**  | 77.6           | 64.5       | 67.8    | 68.7    | **54.9**      |
+| ChatGPT            | 175B | 52.9      | 61.8           | 50.9       | 53.6    | 54.4    | 41.4          |
+| InternLM-7B        | 7B   | 48.0      | 67.4           | 55.4       | 45.8    | 52.8    | 37.1          |
+| ChatGLM2-6B        | 6B   | 48.6      | 60.5           | 51.3       | 49.8    | 51.7    | 37.1          |
+| Qwen-7B            | 7B   | 52.8      | 74.1           | 63.1       | 55.2    | 59.6    | 41.0          |
+| Qwen-14B           | 14B  | 65.7      | **85.4**       | **75.3**   | **68.4**| **72.1**| 53.7          |
+| Baichuan-7B        | 7B   | 38.2      | 52.0           | 46.2       | 39.3    | 42.8    | 31.5          |
+| Baichuan-13B       | 13B  | 47.0      | 66.8           | 57.3       | 49.8    | 53.6    | 36.7          |
+| Baichuan2-13B-Chat | 13B  | 48.4      | 70.5           | 60.3       | 55.0    | 56.6    | 37.9          |
+| CFGPT-2            | 13B  | 47.6      | 70.0           | 60.7       | 54.5    | 56.2    | 33.7          |
 
-| Model              | Size | Company   | Product   | R.Avg     | Industry  | Event     | Sentiment | C.Avg     | Summary   | Risk      | Suggestion | G.Avg     | Avg       |
+## FinEval
+
+| Model              | Size | Finance | Economy | Accounting | Certificate | Average | 
+| ------------------ | ---- | ------- | ------  | -----      | ---------   | ---     |
+| GPT-4              | -    | **71.0**| **74.5**| **59.3**   | **70.4**    | **68.6**| 
+| ChatGPT            | 175B | 59.3    | 61.6    | 45.2       | 55.1        | 55.0    | 
+| InternLM-7B        | 7B   | 49.0    | 49.2    | 40.5       | 49.4        | 47.1    | 
+| ChatGLM2-6B        | 6B   | 46.5    | 46.4    | 44.5       | 51.5        | 47.4    | 
+| Qwen-Chat-7B       | 7B   | 51.5    | 52.1    | 44.5       | 53.6        | 50.5    | 
+| Qwen-7B            | 7B   | 54.5    | 54.4    | 50.3       | 55.8        | 53.8    | 
+| Baichuan-7B-Chat   | 7B   | 44.9    | 41.5    | 34.9       | 45.6        | 42.0    | 
+| Baichuan-13B-Chat  | 13B  | 51.6    | 51.1    | 41.7       | 52.8        | 49.4    | 
+| CFGPT-2            | 13B  | 57.3    | 56.2    | 51.2       | 57.6        | 55.6    | 
+
+## CFBenchmark-Basic
+| Model              | Size | Company   | Product   | R.Avg     | Sector  | Event     | Sentiment | C.Avg     | Summary   | Risk      | Suggestion | G.Avg     | Avg       |
 | ------------------ | ---- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------- | --------- | --------- |
+| HUMAN              | -    | 0.931     | 0.744     | 0.838     | 0.975     | 0.939     | 0.912     | 0.942     | 1.000     | 1.000     | 1.000      | 1.000     | 0.927     |
 | ChatGPT            | 20B  | 0.797     | 0.198     | 0.498     | 0.453     | 0.458     | 0.425     | 0.455     | 0.593     | 0.541     | 0.771      | 0.635     | 0.529     |
 | ERNIE-Bot          | 260B | 0.807     | 0.300     | 0.533     | 0.408     | 0.350     | 0.186     | 0.315     | 0.715     | 0.590     | 0.716      | 0.673     | 0.507     |
 | ERNIE-Bot-4        | -    | 0.819     | 0.417     | 0.618     | 0.418     | 0.358     | 0.375     | 0.384     | 0.721     | 0.629     | 0.718      | 0.689     | 0.564     |
@@ -382,8 +406,21 @@ The best scores of LLMs (considering zero-shot and few-shot),as well as which of
 | InternLM-20B-Chat  | 20B  | 0.488     | 0.362     | 0.425     | 0.323     | 0.327     | 0.370     | 0.340     | 0.706     | 0.578     | 0.762      | 0.662     | 0.476     |
 | CFGPT1-stf-LoRA    | 7B   | 0.820     | 0.414     | 0.617     | 0.569     | 0.729     | 0.769     | 0.689     | 0.745     | 0.584     | 0.609      | 0.646     | 0.650     |
 | CFGPT1-sft-Full    | 7B   | **0.836** | **0.476** | **0.656** | **0.700** | **0.808** | **0.829** | **0.779** | **0.798** | **0.669** | **0.808**  | **0.758** | **0.731** |
+| CFGPT2             | 13B  |**0.861**|**0.490**|**0.676**|**0.722** |**0.835**|**0.831**  |**0.796**|**0.821**|**0.723**|**0.831**   |**0.792**|**0.755**|
 
-More details can be found in [CFBenchmark-Basic](https://github.com/TongjiFinLab/CFBenchmark)
+## OpenFinData
+
+| Model              | Size | Knowledge | Caluation | Explanation | Identification | Analysis | Compliance | Average | 
+| ------------------ | ---- | -------   | ------    | -----       | ---------      | -----    | -------    | -----   |
+| ERNIE-Bot-3.5      | -    | 78.0      | 70.4      | 82.1        | 75.3           | 77.7     | 36.7       | 70.0    | 
+| ERNIE-Bot-4        | -    | **87.3**  | **73.6**  | **84.3**    | **77.0**       | **79.1** | 37.3       |**73.1** | 
+| InternLM-7B        | 7B   | 65.3      | 45.8      | 71.4        | 62.5           | 59.2     | 37.2       | 56.9    | 
+| ChatGLM2-6B        | 6B   | 62.4      | 37.2      | 70.8        | 59.2           | 58.3     | 38.7       | 54.4    | 
+| Qwen-Chat-7B       | 7B   | 71.3      | 40.5      | 71.4        | 58.6           | 51.3     | 40.0       | 55.5    | 
+| Qwen-Chat-14B      | 14B  | 78.0      | 57.6      | 75.6        | 71.6           | 59.3     | 40.6       | 63.8    | 
+| Baichuan2-7B-Chat  | 7B   | 46.2      | 37.0      | 76.5        | 60.2           | 55.0     | 28.7       | 50.6    | 
+| Baichuan2-13B-Chat | 13B  | 69.3      | 39.5      | 75.3        | 65.7           | 62.0     | 31.3       | 57.2    | 
+| CFGPT-2            | 13B  | 86.7      | 64.3      | 77.3        | 73.8           | 65.2     |**70.2**    | 72.9    | 
 
 # Acknowledgements
 
