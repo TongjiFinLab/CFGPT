@@ -426,7 +426,7 @@ CFGPT已参考了以下开源项目。我们要向这些项目的研究者表示
 - [ ] 持续性改进CFGPT在更多复杂金融任务上的能力
 
 # 使用许可
-CFGPT的代码遵循Apache许可证2.0协议。CFGPT的模型在满足InternLM 7B和百川13B基础模型许可证和OpenAI生成数据的使用条款的前提下，支持免费商用。如果您发现任何潜在的违规行为，请与我们联系。
+CFGPT的代码遵循Apache许可证2.0协议。CFGPT的模型免费开源，商用许可遵循开源基础模型InternLM 7B和百川2-13B的许可协议和OpenAI生成数据的使用条款。如果您发现任何潜在的违规行为，请与我们联系。
 
 ### 感谢我们的贡献者 :
 <a href="https://github.com/TongjiFinLab/CFGPT/graphs/contributors">
