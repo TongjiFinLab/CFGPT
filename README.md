@@ -11,6 +11,10 @@
 
 English | [简体中文](README-zh.md)
 
+# News
+
+[2024.04.25] Our [RA-CFGPT](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-31018-5) has been accepted by [***Frontiers of Computer Science***](https://link.springer.com/journal/11704)。RA-CFGPT adds a retrieval enhancement module and an answer verification module on top of CFGPT1, effectively improving the model's knowledgeability and security in answering financial questions.
+
 # Introduction
 
 We introduce **CFGPT**, an open-source language model trained by firstly further pretraining general LLMs on collected and cleaned Chinese finance text data (CFData-pt), including financial domain-specific data (announcement, finance articles, finance exams, finance news, finance research papers) and general data (Wikipedia), and secondly fine-tuning with knowledge-intensive instruction tuning data (CFData-sft). 

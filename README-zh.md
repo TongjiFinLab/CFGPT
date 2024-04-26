@@ -10,6 +10,10 @@
 
 [English](README.md) | 简体中文
 
+# 更新
+
+[2024.04.25] 我们的[RA-CFGPT](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-31018-5)被[***Frontiers of Computer Science***](https://link.springer.com/journal/11704)录取了。RA-CFGPT在CFGPT1的基础上额外添加了检索增强模块和回答验证模块，可以有效提升模型在金融问题上回答的知识性与安全性。
+
 # 简介
 
 **CFGPT**是一个开源的语言模型，首先通过在收集和清理的中国金融文本数据（CFData-pt）上进行继续预训练，包括金融领域特定数据（公告、金融文章、金融考试、金融新闻、金融研究论文）和通用数据（维基百科），然后使用知识密集的指导调整数据（CFData-sft）进行微调。
