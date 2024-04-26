@@ -12,7 +12,7 @@
 
 # 更新
 
-[2024.04.25] 我们的[RA-CFGPT](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-31018-5)被[***Frontiers of Computer Science***](https://link.springer.com/journal/11704)录取了。RA-CFGPT在CFGPT1的基础上额外添加了检索增强模块和回答验证模块，可以有效提升模型在金融问题上回答的知识性与安全性。
+[2024.04.25] 我们的[**RA-CFGPT**](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-31018-5)被[***Frontiers of Computer Science***](https://link.springer.com/journal/11704)录取了。RA-CFGPT在CFGPT1的基础上额外添加了检索增强模块和回答验证模块，可以有效提升模型在金融问题上回答的知识性与安全性。
 
 # 简介
 

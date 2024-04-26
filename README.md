@@ -13,7 +13,7 @@ English | [简体中文](README-zh.md)
 
 # News
 
-[2024.04.25] Our [RA-CFGPT](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-31018-5) has been accepted by [***Frontiers of Computer Science***](https://link.springer.com/journal/11704)。RA-CFGPT adds a retrieval enhancement module and an answer verification module on top of CFGPT1, effectively improving the model's knowledgeability and security in answering financial questions.
+[2024.04.25] Our [**RA-CFGPT**](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-31018-5) has been accepted by [***Frontiers of Computer Science***](https://link.springer.com/journal/11704). RA-CFGPT adds a retrieval enhancement module and an answer verification module on top of CFGPT1, effectively improving the model's knowledgeability and security in answering financial questions.
 
 # Introduction
 
