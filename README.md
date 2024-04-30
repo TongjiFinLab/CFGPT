@@ -447,7 +447,7 @@ The use of the source code of CFGPT complies with the Apache 2.0 License.  CFGPT
 
 ### Citation
 
-If you use the code or model of **CFGPT**, please declare the reference with the following:
+If you find **CFGPT** is useful for your research, please consider citing the following papers.
 
 ```
 @misc{li2023cfgpt,
