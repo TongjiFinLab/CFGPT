@@ -17,7 +17,7 @@ We introduce **CFGPT**, an open-source language model trained by firstly further
 As for preliminary evaluation, we use CFBenchmark-Basic. 
 CFGPT outperforms the baselines on objective and subjective tasks compared to several baseline models with similar parameters. 
 
-- We develop CFGPT2 (13B), which is not only a more powerful Chinese financial large model but also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
+- We develop CFGPT2 (7B&20B), which is not only a more powerful Chinese financial large model but also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
 - We release CFGPT1 (7B) in three parts:
   - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): Full model weights after further pretraining with the chinese finance text corpus to comply with the InternLM model license. 
   - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): Adapter model weights trained by PEFT (LoRA).
@@ -364,7 +364,10 @@ The performance of our CFGPT2 (13B) is shown as follows:
 | Baichuan-7B        | 7B   | 38.2      | 52.0           | 46.2       | 39.3    | 42.8    | 31.5          |
 | Baichuan-13B       | 13B  | 47.0      | 66.8           | 57.3       | 49.8    | 53.6    | 36.7          |
 | Baichuan2-13B-Chat | 13B  | 48.4      | 70.5           | 60.3       | 55.0    | 56.6    | 37.9          |
-| CFGPT-2            | 13B  | 47.6      | 70.0           | 60.7       | 54.5    | 56.2    | 33.7          |
+| InternLM2-7B       | 7B   | 52.3      | 71.9           | 64.9       | 61.0    | 60.8    | 38.8          |
+| InternLM2-20B      | 20B  | 56.1      | 75.7           | 62.6       | 62.4    | 63.0    | 46.3          |
+| CFGPT2-7B          | 7B   | 56.7      | 76.4           | 63.9       | 63.0    | 63.5    | 43.2          |
+| CFGPT2-20B         | 20B  | 64.6      | 80.8           | 72.1       | 68.9    | 69.2    | 49.9          |
 
 ## FinEval
 
@@ -378,10 +381,13 @@ The performance of our CFGPT2 (13B) is shown as follows:
 | Qwen-7B            | 7B   | 54.5    | 54.4    | 50.3       | 55.8        | 53.8    | 
 | Baichuan-7B-Chat   | 7B   | 44.9    | 41.5    | 34.9       | 45.6        | 42.0    | 
 | Baichuan-13B-Chat  | 13B  | 51.6    | 51.1    | 41.7       | 52.8        | 49.4    | 
-| CFGPT-2            | 13B  | 57.3    | 56.2    | 51.2       | 57.6        | 55.6    | 
+| InternLM2-7B       | 7B   | 54.2    | 54.0    | 43.5       | 55.4        | 51.9    |
+| InternLM2-20B      | 20B  | 57.3    | 58.9    | 47.4       | 58.6        | 55.5    |
+| CFGPT2-7B          | 7B   | 62.6    | 63.9    | 58.9       | 66.0        | 62.9    |
+| CFGPT2-20B         | 20B  | 64.0    | 64.9    | 62.1       | 67.9        | 64.8    |
 
 ## CFBenchmark-Basic
-| Model              | Size | Company   | Product   | R.Avg     | Sector  | Event     | Sentiment | C.Avg     | Summary   | Risk      | Suggestion | G.Avg     | Avg       |
+| Model              | Size | Company   | Product   | R.Avg     | Sector    | Event     | Sentiment | C.Avg     | Summary   | Risk      | Suggestion | G.Avg     | Avg       |
 | ------------------ | ---- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------- | --------- | --------- |
 | HUMAN              | -    | 0.931     | 0.744     | 0.838     | 0.975     | 0.939     | 0.912     | 0.942     | 1.000     | 1.000     | 1.000      | 1.000     | 0.927     |
 | ChatGPT            | 20B  | 0.797     | 0.198     | 0.498     | 0.453     | 0.458     | 0.425     | 0.455     | 0.593     | 0.541     | 0.771      | 0.635     | 0.529     |
@@ -406,7 +412,8 @@ The performance of our CFGPT2 (13B) is shown as follows:
 | InternLM-20B-Chat  | 20B  | 0.488     | 0.362     | 0.425     | 0.323     | 0.327     | 0.370     | 0.340     | 0.706     | 0.578     | 0.762      | 0.662     | 0.476     |
 | CFGPT1-stf-LoRA    | 7B   | 0.820     | 0.414     | 0.617     | 0.569     | 0.729     | 0.769     | 0.689     | 0.745     | 0.584     | 0.609      | 0.646     | 0.650     |
 | CFGPT1-sft-Full    | 7B   | **0.836** | **0.476** | **0.656** | **0.700** | **0.808** | **0.829** | **0.779** | **0.798** | **0.669** | **0.808**  | **0.758** | **0.731** |
-| CFGPT2             | 13B  |**0.861**|**0.490**|**0.676**|**0.722** |**0.835**|**0.831**  |**0.796**|**0.821**|**0.723**|**0.831**   |**0.792**|**0.755**|
+| CFGPT2-7B          | 7B   | **0.834** | **0.470** | **0.652** | **0.644** | **0.750** | **0.793** | **0.729** | **0.801** | **0.692** | **0.790**  | **0.761** | **0.714** |
+| CFGPT2-20B         | 20B  | **0.891** | **0.501** | **0.696** | **0.722** | **0.825** | **0.865** | **0.806** | **0.825** | **0.727** | **0.823**  | **0.792** | **0.755** |
 
 ## OpenFinData
 
@@ -420,7 +427,10 @@ The performance of our CFGPT2 (13B) is shown as follows:
 | Qwen-Chat-14B      | 14B  | 78.0      | 57.6      | 75.6        | 71.6           | 59.3     | 40.6       | 63.8    | 
 | Baichuan2-7B-Chat  | 7B   | 46.2      | 37.0      | 76.5        | 60.2           | 55.0     | 28.7       | 50.6    | 
 | Baichuan2-13B-Chat | 13B  | 69.3      | 39.5      | 75.3        | 65.7           | 62.0     | 31.3       | 57.2    | 
-| CFGPT-2            | 13B  | 86.7      | 64.3      | 77.3        | 73.8           | 65.2     |**70.2**    | 72.9    | 
+| InternLM2-7B       | 7B   | 70.2      | 39.9      | 73.4        | 62.8           | 61.4     | 39.5       | 57.8    |
+| InternLM2-20B      | 20B  | 76.4      | 52.6      | 76.3        | 66.2           | 63.9     | 42.1       | 62.9    |
+| CFGPT2-7B          | 7B   | 81.9      | 62.8      | 75.2        | 71.3           | 64.1     | 68.2       | 70.5    |
+| CFGPT2-20B         | 20B  | 84.6      | 66.5      | 78.1        | 75.9           | 66.0     | **71.9**   | 73.8    |
 
 # Acknowledgements
 
