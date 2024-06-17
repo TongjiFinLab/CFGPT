@@ -17,7 +17,7 @@ We introduce **CFGPT**, an open-source language model trained by firstly further
 As for preliminary evaluation, we use CFBenchmark-Basic. 
 CFGPT outperforms the baselines on objective and subjective tasks compared to several baseline models with similar parameters. 
 
-- We develop CFGPT2 (7B&20B), which is not only a more powerful Chinese financial large model but also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
+- We develop CFGPT2 (7B&20B) based on [InternLM](https://github.com/InternLM/InternLM), which is not only a more powerful Chinese financial large model but also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
 - We release CFGPT1 (7B) in three parts:
   - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): Full model weights after further pretraining with the chinese finance text corpus to comply with the InternLM model license. 
   - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): Adapter model weights trained by PEFT (LoRA).

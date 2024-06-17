@@ -15,7 +15,7 @@
 **CFGPT**是一个开源的语言模型，首先通过在收集和清理的中国金融文本数据（CFData-pt）上进行继续预训练，包括金融领域特定数据（公告、金融文章、金融考试、金融新闻、金融研究论文）和通用数据（维基百科），然后使用知识密集的指导调整数据（CFData-sft）进行微调。
 我们使用CFBenchmark-Basic进行初步评估。与几个具有相似参数的基线模型相比，CFGPT在识别，分类和生成任务上表现优越。
 
-- 我们开发了CFGPT2 (7B&20B)，这不仅是一个功能更加强大的中文金融大模型，同时还融合了检索增强模块，事实检测模块，合规检查模块和风险监测模块，在提升金融大模型服务的实时性与准确性的同时，有效监测与管控金融风险。
+- 我们基于[书生·浦语](https://github.com/InternLM/InternLM)开发了CFGPT2 (7B&20B)，这不仅是一个功能更加强大的中文金融大模型，同时还融合了检索增强模块，事实检测模块，合规检查模块和风险监测模块，在提升金融大模型服务的实时性与准确性的同时，有效监测与管控金融风险。
 - 我们将CFGPT1 (7B) 分成三个部分发布：
     - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): 在中国金融文本语料库上进行进一步预训练且符合InternLM模型许可的完整模型权重。
     - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): 基于我们继续预训练模型的由PEFT（LoRA）训练的适配器模型权重。
