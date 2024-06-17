@@ -115,9 +115,9 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 # 典型使用案例
 
-- [CFGPT-v2-13B 银行业场景使用案例](cases/case_bank.md)
-- [CFGPT-v2-13B 算法交易场景使用案例](cases/case_algor_trading.md)
-- [CFGPT-v2-13B 第一产业场景使用案例](cases/case_primary_industry.md)
+- [CFGPT-v2-7B 银行业场景使用案例](cases/case_bank.md)
+- [CFGPT-v2-7B 算法交易场景使用案例](cases/case_algor_trading.md)
+- [CFGPT-v2-7B 第一产业场景使用案例](cases/case_primary_industry.md)
 - [CFGPT-v1-7B 典型数据案例介绍](cases/case_CFGPTv1.md)
 
 # 数据集
