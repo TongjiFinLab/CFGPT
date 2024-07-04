@@ -13,9 +13,9 @@
 # 简介
 
 **CFGPT**是一个开源的语言模型，首先通过在收集和清理的中国金融文本数据（CFData-pt）上进行继续预训练，包括金融领域特定数据（公告、金融文章、金融考试、金融新闻、金融研究论文）和通用数据（维基百科），然后使用知识密集的指导调整数据（CFData-sft）进行微调。
-我们使用CFBenchmark-Basic进行初步评估。与几个具有相似参数的基线模型相比，CFGPT在识别，分类和生成任务上表现优越。
+我们使用CFBenchmark-Basic进行初步评估。与几个具有相似参数的基线模型相比，CFGPT在识别，分类和生成任务上表现具有优势。
 
-- 我们基于[书生·浦语](https://github.com/InternLM/InternLM)开发了CFGPT2 (7B&20B)，这不仅是一个功能更加强大的中文金融大模型，同时还融合了检索增强模块，事实检测模块，合规检查模块和风险监测模块，在提升金融大模型服务的实时性与准确性的同时，有效监测与管控金融风险。
+- 我们基于[书生·浦语2](https://github.com/InternLM/InternLM)开发了CFGPT2 (7B&20B)，同时还融合了检索增强模块，事实检测模块，合规检查模块和风险监测模块，在提升金融大模型服务的实时性与准确性的同时，有效监测与管控金融风险。
 - 我们将CFGPT1 (7B) 分成三个部分发布：
     - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): 在中国金融文本语料库上进行进一步预训练且符合InternLM模型许可的完整模型权重。
     - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): 基于我们继续预训练模型的由PEFT（LoRA）训练的适配器模型权重。
@@ -171,8 +171,7 @@ CFData-sft提供了大量金融领域的文本信息，使FinLLM能够从不同�
 | Exam | 回答与财务问题相关的是非问题 | CFData-QA | 16K |
 | Stock | 预测股票未来走势 | CFData-SP | 15K |
 
-因为数据的许可问题, 我们不能公开发布完整版的CFData. 
-研究人员可以参考我们[CFData](./data)的一些示例数据
+更多关于CFData的信息，研究人员可以参考我们[CFData](./data)的一些示例数据
 
 # 代码
 
@@ -423,7 +422,7 @@ CFGPT2的评测结果如下所示。
 
 # 致谢
 
-CFGPT已参考了以下开源项目。我们要向这些项目的研究者表示感谢和尊重。
+CFGPT的研发过程参考了以下开源项目。我们向这些项目的研究者表示感谢。
 
 - InternLM: https://github.com/InternLM/InternLM
 - Firefly: https://github.com/yangjianxin1/Firefly
@@ -436,7 +435,7 @@ CFGPT已参考了以下开源项目。我们要向这些项目的研究者表示
 - [ ] 持续性改进CFGPT在更多复杂金融任务上的能力
 
 # 使用许可
-CFGPT的代码遵循Apache许可证2.0协议。CFGPT的模型免费开源，商用许可遵循开源基础模型InternLM 7B和百川2-13B的许可协议和OpenAI生成数据的使用条款。如果您发现任何潜在的违规行为，请与我们联系。
+CFGPT的代码遵循Apache许可证2.0协议。CFGPT的模型免费开源，商用许可遵循开源基础模型InternLM 7B和20B的许可协议和OpenAI生成数据的使用条款。如果您发现任何潜在的风险行为，请与我们联系。
 
 ### 感谢我们的贡献者 :
 <a href="https://github.com/TongjiFinLab/CFGPT/graphs/contributors">
