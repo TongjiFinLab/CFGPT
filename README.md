@@ -460,23 +460,21 @@ The use of the source code of CFGPT complies with the Apache 2.0 License.  CFGPT
 If you find **CFGPT** is useful for your research, please consider citing the following papers.
 
 ```
-@misc{li2023cfgpt,
-      title={CFGPT: Chinese Financial Assistant with Large Language Model}, 
-      author={Jiangtong Li and Yuxuan Bian and Guoxuan Wang and Yang Lei and Dawei Cheng and Zhijun Ding and Changjun Jiang},
-      year={2023},
-      eprint={2309.10654},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{li2023cfgpt,
+  title={CFGPT: Chinese financial assistant with large language model},
+  author={Li, Jiangtong and Bian, Yuxuan and Wang, Guoxuan and Lei, Yang and Cheng, Dawei and Ding, Zhijun and Jiang, Changjun},
+  journal={arXiv preprint arXiv:2309.10654},
+  year={2023}
 }
 
-@article{li2024racfgpt,
-         author = {Jiangtong Li, Yang Lei, Yuxuan Bian, Dawei Cheng, Zhijun Ding, Changjun Jiang},
-         title = {RA-CFGPT: Chinese Financial Assistant with Retrieval-Augmented Large Language Model},
-         publisher = {Front. Comput. Sci.},
-         year = {2024},
-         journal = {Frontiers of Computer Science},
-         volume = {},
-         number = {},
-         doi = {10.1007/s11704-024-31018-5}
+@article{li2024ra,
+  title={RA-CFGPT: Chinese financial assistant with retrieval-augmented large language model},
+  author={Li, Jiangtong and Lei, Yang and Bian, Yuxuan and Cheng, Dawei and Ding, Zhijun and Jiang, Changjun},
+  journal={Frontiers of Computer Science},
+  volume={18},
+  number={5},
+  pages={185350},
+  year={2024},
+  publisher={Springer}
 }
 ```
