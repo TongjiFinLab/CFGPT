@@ -468,8 +468,7 @@ If you find **CFGPT** is useful for your research, please consider citing the fo
       archivePrefix={arXiv},
       primaryClass={cs.CL}
 }
-```
-```
+
 @article{li2024racfgpt,
          author = {Jiangtong Li, Yang Lei, Yuxuan Bian, Dawei Cheng, Zhijun Ding, Changjun Jiang},
          title = {RA-CFGPT: Chinese Financial Assistant with Retrieval-Augmented Large Language Model},
@@ -479,5 +478,5 @@ If you find **CFGPT** is useful for your research, please consider citing the fo
          volume = {},
          number = {},
          doi = {10.1007/s11704-024-31018-5}
-}    
+}
 ```
