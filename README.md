@@ -18,6 +18,8 @@ As for preliminary evaluation, we use CFBenchmark-Basic.
 CFGPT outperforms the baselines on objective and subjective tasks compared to several baseline models with similar parameters. 
 
 - We develop CFGPT2 (7B&20B) based on [InternLM](https://github.com/InternLM/InternLM), which also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
+  - [CFGPT2-7B](https://huggingface.co/TongjiFinLab/CFGPT2-7B): Further pretraining and supervised fine-tuning InternLM2 on our dataset and outperforms the baselines on several financial task.
+ 
 - We release CFGPT1 (7B) in three parts:
   - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): Full model weights after further pretraining with the chinese finance text corpus to comply with the InternLM model license. 
   - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): Adapter model weights trained by PEFT (LoRA).

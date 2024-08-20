@@ -16,6 +16,8 @@
 我们使用CFBenchmark-Basic进行初步评估。与几个具有相似参数的基线模型相比，CFGPT在识别，分类和生成任务上表现具有优势。
 
 - 我们基于[书生·浦语2](https://github.com/InternLM/InternLM)开发了CFGPT2 (7B&20B)，同时还融合了检索增强模块，事实检测模块，合规检查模块和风险监测模块，在提升金融大模型服务的实时性与准确性的同时，有效监测与管控金融风险。
+    - [书生·浦语2-7B](https://huggingface.co/TongjiFinLab/CFGPT2-7B): 基于InternLM2-7B进行继续与训练和有监督微调，在多个金融任务上取得领先。
+
 - 我们将CFGPT1 (7B) 分成三个部分发布：
     - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): 在中国金融文本语料库上进行进一步预训练且符合InternLM模型许可的完整模型权重。
     - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): 基于我们继续预训练模型的由PEFT（LoRA）训练的适配器模型权重。
