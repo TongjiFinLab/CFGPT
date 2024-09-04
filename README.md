@@ -34,7 +34,7 @@ CFGPT outperforms the baselines on objective and subjective tasks compared to se
 ***The following is the overview of training CFGPT:***
 
 <div align="center">
-<img align="center" src=./figs/CFGPT-TRAIN.svg width="100%"/>
+<img align="center" src=./figs/CFGPT-training.svg width="100%"/>
 </div>
 
 
