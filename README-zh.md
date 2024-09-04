@@ -32,7 +32,7 @@
 ***以下是训练 CFGPT 的流程概览图：***
 
 <div align="center">
-<img align="center" src=./figs/CFGPT-Training.svg width="100%"/>
+<img align="center" src=./figs/CFGPT-TRAIN_zh.svg width="100%"/>
 </div>
 
 # 目录
