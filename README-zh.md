@@ -12,22 +12,26 @@
 
 # 简介
 
-**CFGPT**是一个开源的语言模型，首先通过在收集和清理的中国金融文本数据（CFData-pt）上进行继续预训练，包括金融领域特定数据（公告、金融文章、金融考试、金融新闻、金融研究论文）和通用数据（维基百科），然后使用知识密集的指导调整数据（CFData-sft）进行微调。
-我们使用CFBenchmark-Basic进行初步评估。与几个具有相似参数的基线模型相比，CFGPT在识别，分类和生成任务上表现具有优势。
+**CFGPT** 是面向中文金融场景的大语言模型系列。我们通过在收集、清洗后的中文金融语料（CFData-pt）上进行继续预训练，并结合知识密集型金融指令数据（CFData-sft）进行有监督微调，使通用大模型具备更强的金融文本理解、金融信息抽取、金融生成与风险分析能力。
 
-- 我们基于[书生·浦语2](https://github.com/InternLM/InternLM)开发了CFGPT2 (7B&20B)，同时还融合了检索增强模块，事实检测模块，合规检查模块和风险监测模块，在提升金融大模型服务的实时性与准确性的同时，有效监测与管控金融风险。
-    - [书生·浦语2-7B](https://huggingface.co/TongjiFinLab/CFGPT2-7B): 基于InternLM2-7B进行继续与训练和有监督微调，在多个金融任务上取得领先。
+CFGPT 目前包含三个主要版本：
 
-- 我们将CFGPT1 (7B) 分成三个部分发布：
-    - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): 在中国金融文本语料库上进行进一步预训练且符合InternLM模型许可的完整模型权重。
-    - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): 基于我们继续预训练模型的由PEFT（LoRA）训练的适配器模型权重。
-    - [Supervised Finetuned Model (Full)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full): 基于我们继续预训练模型的进一步全参数微调的完整模型训练权重。
+| 版本 | 参数规模 | 基座模型 | 状态 |
+| - | - | - | - |
+| CFGPT1 | 7B | InternLM 7B | 已开源部分模型权重 |
+| CFGPT2 | 7B & 20B | InternLM2 7B & 20B | 已发布相关模型与评测结果 |
+| CFGPT3 | 8B & 32B | Qwen3 8B & 32B | 训练代码已加入，模型权重暂未开源 |
 
-- 我们还发布了[CFBenchmark](https://github.com/TongjiFinLab/CFBenchmark)，这是一个针对大语言模型的中文金融基准测试。基础版本的CFBenchmark包括3917个金融文本，涵盖三个方面和八个任务，用于评估中文金融市场中LLM（大型语言模型）的金融文本处理能力。
+- **CFGPT1** 基于 InternLM 7B，包含继续预训练模型、LoRA 有监督微调模型和全参数有监督微调模型：
+  - [CFGPT1-pt-7B](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B)：在中文金融语料上继续预训练后的模型权重。
+  - [CFGPT1-sft-7B-LoRA](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA)：基于 CFGPT1-pt-7B 训练的 LoRA 适配器权重。
+  - [CFGPT1-sft-7B-Full](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full)：基于 CFGPT1-pt-7B 训练的全参数 SFT 权重。
+- **CFGPT2** 基于 [InternLM2](https://github.com/InternLM/InternLM)，覆盖 7B 和 20B 两个规模，并结合检索增强、事实核查、合规检查和风险监测等模块，在多个金融任务上取得较好表现。
+  - [CFGPT2-7B](https://huggingface.co/TongjiFinLab/CFGPT2-7B)
+  - [CFGPT2-20B](https://huggingface.co/TongjiFinLab/CFGPT2-20B)
+- **CFGPT3** 基于 [Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B)和 [Qwen3-32B](https://huggingface.co/Qwen/Qwen3-32B)，延续“金融继续预训练 + 金融有监督微调”的训练路线，并在继续预训练数据上进行了扩展。当前仓库已加入 CFGPT3-8B 的训练和评测代码；CFGPT3-8B 与 CFGPT3-32B 模型权重暂未开源。
 
-- 我们还发布了CFGPT的进一步预训练和指导微调的代码。
-
-- 我们还提供了CFData-sft的相关示例数据，以方便使用者理解我们的训练过程
+我们同时发布了 [CFBenchmark](https://github.com/TongjiFinLab/CFBenchmark)，用于评估大语言模型在中文金融市场中的文本处理能力。本仓库保留 CFGPT 的训练代码、评测代码、CFData 样例数据和典型应用案例，方便研究者复现训练流程与理解数据格式。
 
 ***以下是训练 CFGPT 的流程概览图：***
 
@@ -60,13 +64,18 @@ source activate env_name
 pip install -r requirements.txt
 ```
 
-**2. 准备预训练的 CFGPT1**
+**2. 选择模型版本**
 
-CFGPT1由三个部分组成：一个继续预训练模型，将InternLM-7B在我们的CFData-pt上继续预训练，一个LoRA模型（通过PEFT在我们的CFData-sft上训练），以及基于继续预训练模型监督微调训练的全精调模型。
+当前已开源的模型主要是 CFGPT1 系列。CFGPT3-8B 和 CFGPT3-32B 当前处于训练与评测代码发布阶段，模型权重暂未开源。
 
-|Pretrain model|Adapter model|Full SFT Model|
-|:-:|:-:|:-:|
- [CFGPT1-pt-7B](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B)|[CFGPT1-sft-7B-LoRA](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA)|[CFGPT1-sft-7B-Full](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full)|
+| 模型 | 类型 | 链接 |
+| - | - | - |
+| CFGPT1-pt-7B | 继续预训练模型 | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B) |
+| CFGPT1-sft-7B-LoRA | LoRA 有监督微调模型 | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA) |
+| CFGPT1-sft-7B-Full | 全参数有监督微调模型 | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full) |
+|CFGPT2-7B|有监督微调模型|[Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT2-7B)|
+|CFGPT2-20B|有监督微调模型|[Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT2-20B)|
+| CFGPT3-8B / CFGPT3-32B | Qwen3 系列金融模型 | 暂未开源 |
 
 **3. 使用 CFGPT1-sft-7B-LoRA**
 
@@ -115,6 +124,21 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 - **更多使用细节在 `./code/test`**
 
+**5. 训练 CFGPT3-8B**
+
+CFGPT3-8B 的代码包含继续预训练、全参数有监督微调。运行前需要根据本地环境修改模型路径、数据路径、缓存路径和 GPU/DeepSpeed 配置。
+
+```bash
+# 继续预训练数据处理与训练
+cd code/train/Qwen3-8B/pretrain
+python process_data.py
+bash start.sh
+
+# 有监督微调
+cd ../full-sft
+bash start.sh
+```
+
 # 典型使用案例
 
 - [CFGPT-v2-7B 银行业场景使用案例](cases/case_bank.md)
@@ -131,7 +155,7 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 
 
 ## 继续预训练
-
+### CFGPT1&2的CPT
 预训练数据集包括 5.91 亿份文档和 1930 亿个token，包括六个子数据集：
 
 * CFData-CP（6.24%）：包括 3,900 份公司招股说明书，共计 130 亿个token；
@@ -142,6 +166,31 @@ print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：
 * CFData-Wiki（0.09%）：包括 25.5 万份维基百科内容，共计 1.37 亿个token。
 
 我们从CFData-pt中抽取了一个财经文本子语料库，以便在InternLM-7B上进行进一步的预训练。该子语料库包含了来自大量中国财经数据和分析以及少量通用文本的共计约137亿个token，这些通用文本包括公告、研究报告、社交媒体内容、财经新闻文章和维基百科等，而这些数据主要由我们自行收集。
+
+### CFGPT3的CPT
+对于CFGPT3的训练，我们增加了一部分新的数据。具体是：
+* Financial (70.17%)
+    * news_rp_origin_text (21.73%)
+    * fin_news_2022 (20.95%)
+    * fin_announcement (13.61%)
+    * fin_articles (6.91%)
+    * fin_news_2025 (6.33%)
+    * fin_books (0.36%)
+    * fin_exam (0.26%)
+    * fin_reports (0.01%)
+* General (29.83%)
+    * CLUECorpusSmall (18.76%)
+    * UNv1-0 (3.15%)
+    * ParaCrawl-v9 (1.86%)
+    * zhwiki_2023 (1.84%)
+    * news-crawl (1.64%)
+    * csl (1.26%)
+    * translation2019zh (0.83%)
+    * WikiMatrix (0.43%)
+    * news-commentary (0.05%)
+
+以上一共大约284亿tokens。本次对CFGPT3系统模型的继续预训练使用了全部的数据。这些数据主要一些金融数据例如包括新闻，公告，研究报告，金融文章，专业书籍，金融测试和财报等等。除此之外也包括小部分通用语料。以上数据皆由我们自行收集。
+
 
 ## 有监督微调
 
@@ -177,164 +226,83 @@ CFData-sft提供了大量金融领域的文本信息，使FinLLM能够从不同�
 
 # 代码
 
+本仓库保留 CFGPT 的关键训练与评测代码。整体上，CFGPT 的训练流程包括：数据预处理、继续预训练、有监督微调、模型生成测试和下游评测。不同版本对应的基座模型和脚本目录略有不同，详细参数请查看对应目录下的 `.py`、`.sh`、`.yml` 和 `ds_config.json` 文件。
+
+## 代码结构
+
+```text
+code/
+├── train/
+│   ├── InternLM/
+│   │   └── pretrain/          # CFGPT1/2 相关 InternLM 系列继续预训练代码
+│   └── Qwen3-8B/
+│       ├── pretrain/          # CFGPT3-8B 继续预训练与数据处理代码
+│       └── full-sft/          # CFGPT3-8B 全参数有监督微调代码
+├── test/
+│   └── eval-generate.py       # 生成测试示例
+└── utils/                     # 数据整理、loss 与 trainer 等通用组件
+```
+
 ## 继续预训练
 
-训练脚本在 **`./code/train/pretrain`**
+继续预训练用于将通用基座模型适配到中文金融语料。该阶段主要包含分词、长文本拼接、数据保存和分布式训练。
+
+InternLM 系列训练代码位于：
 
 ```bash
-deepspeed --include localhost:0,1,2,3,4,5,6,7 --master_port 60002 bf_16_parallel_train.py --config bf_16_parallel_train.yml > bf_16_parallel_train.log 2>&1
+code/train/InternLM/pretrain
 ```
 
-<div align="center">
-<img align="center" src=./figs/CFGPT-Training-loss.svg width="100%"/>
-</div>
+CFGPT3-8B 训练代码位于：
 
-trainer的训练参数在 **`./code/train/pretrain/bf_16_parallel_train.yml`**: 
-```
-# basic setting
-model_name: path/of/your/further/pretrain/model
-dataset: path/to/your/further/pretrain/dataset
-deepspeed: ./ds_config.json
-seed: 42
-max_seq_length: 2048
-
-# train setting 
-output_dir: ./bf_16_parallel_train
-logging_steps: 10
-num_train_epochs: 1
-per_device_train_batch_size: 2
-gradient_accumulation_steps: 16
-learning_rate: 2.0e-4
-weight_decay: 0.01
-warmup_steps: 1000
-save_steps: 1000
-fp16: 0
-bf16: 1
-torch_compile: 0
-save_strategy: steps
-remove_unused_columns: 0
+```bash
+code/train/Qwen3-8B/pretrain
 ```
 
-Deepspeed 训练参数在 **`./code/train/pretrain/ds_config.json`**: 
+以 CFGPT3-8B 为例，运行流程如下：
+
+```bash
+cd code/train/Qwen3-8B/pretrain
+python process_data.py
+bash start.sh
 ```
-{
-    "gradient_accumulation_steps": "auto",
-    "gradient_clipping": "auto",
-    "train_batch_size": "auto",
-    "train_micro_batch_size_per_gpu": "auto",
-    "wall_clock_breakdown": false,
-    "optimizer": {
-        "type": "AdamW",
-        "params": {
-          "lr": "auto",
-          "betas": "auto",
-          "eps": "auto",
-          "weight_decay": 0.01
-          }
-        },
-     "scheduler": {
-        "type": "WarmupDecayLR",
-        "params": {
-            "total_num_steps": "auto",
-            "warmup_min_lr": "auto",
-            "warmup_max_lr": "auto",
-            "warmup_num_steps": "auto"
-        }
-    },
-    "bf16": {
-        "enabled": true
-    },
-    "zero_optimization": {
-        "stage": 1,
-        "reduce_bucket_size": 5e8
-    }
-}
-```
+
+其中，`process_data.py` 负责将原始 jsonl 文本处理为 2048 token 的训练块，`qwen3_8b_pt_train.py` 负责继续预训练，`start.sh` 负责配置环境变量并启动分布式训练。实际运行前请根据本地环境修改模型路径、数据路径、缓存路径、CUDA 路径和 GPU 数量。
+
 
 ## 有监督微调
 
-训练脚本位于 **`./code/train/lora`** 目录下。在这里，我们以 lora-bf16 作为示例。
+有监督微调用于进一步提升模型在金融问答、金融信息抽取、报告摘要、风险提示、投资建议等指令任务上的表现。
 
-```bash
+CFGPT1 原始版本包含 LoRA SFT 和全参数 SFT 两类训练方式。在这里，我们以 lora-bf16 作为示例，训练脚本位于 ./code/train/lora 目录下
+```
 deepspeed --include localhost:6,7 --master_port 60005 lora_bf_16_parallel_train.py --config lora_bf_16_parallel_train.yml > lora_bf_16_parallel_train.log 2>&1
 ```
+CFGPT3-8B 当前提供全参数 SFT 训练代码：
 
-Trainer 训练参数在 **`./code/train/lora/bf16/bf_16_parallel_train.yml`**: 
-```
-# basic setting
-model_name: path/of/your/supervised/finetuning/model
-dataset: path/to/your/supervised/finetuning/dataset
-dataset_eval: path/to/your/evaluate/dataset
-deepspeed: ./ds_config.json
-seed: 42
-max_seq_length: 2048
-
-# train setting 
-output_dir: ./lora_bf_16_parallel_train
-num_train_epochs: 1
-per_device_train_batch_size: 8
-per_device_eval_batch_size: 8
-gradient_accumulation_steps: 1
-learning_rate: 2.0e-4
-weight_decay: 0.01
-warmup_steps: 500
-fp16: 0
-bf16: 1
-torch_compile: 0
-save_strategy: steps
-save_steps: 500
-evaluation_strategy: steps
-eval_steps: 100
-logging_steps: 10
-remove_unused_columns: 0
-
-# lora setting
-rank: 64
-lora_alpha: 16
-lora_dropout: 0.05
-target_modules: ['k_proj', 'o_proj', 'down_proj', 'v_proj', 'q_proj', 'gate_proj', 'up_proj']
-bias: 'none'
-
-# restart info
-resume_from_checkpoint: null
+```bash
+code/train/Qwen3-8B/full-sft
 ```
 
-Deepspeed训练参数在 **`./code/train/lora/bf16/ds_config.json`**: 
-```
-{
-    "gradient_accumulation_steps": "auto",
-    "gradient_clipping": "auto",
-    "steps_per_print": 2000,
-    "train_batch_size": "auto",
-    "train_micro_batch_size_per_gpu": "auto",
-    "wall_clock_breakdown": false,
+运行示例：
 
-    "optimizer": {
-      "type": "AdamW",
-      "params": {
-        "lr": "auto",
-        "betas": "auto",
-        "eps": "auto",
-        "weight_decay": "auto"
-        }
-      
-      },
-    "scheduler": {
-        "type": "WarmupLR",
-        "params": {
-            "warmup_min_lr": "auto",
-            "warmup_max_lr": "auto",
-            "warmup_num_steps": "auto"
-        }
-    },
-    "bf16": {
-      "enabled": true
-    },
-    "zero_optimization": {
-        "stage": 0
-    }
-}
+```bash
+cd code/train/Qwen3-8B/full-sft
+bash start.sh
 ```
+
+其中，`qwen3_8b_sft.py` 负责加载继续预训练后的模型、构造 ChatML 格式训练文本并启动 SFT 训练。训练数据路径、评测数据路径、DeepSpeed 配置路径和输出路径需要根据实际机器环境修改。
+
+## 生成测试
+
+生成测试脚本位于：
+
+```bash
+code/test/eval-generate.py
+```
+
+该脚本用于快速检查模型在金融任务上的生成效果。不同模型的加载路径和推理参数可在脚本中修改。
+
 
 # 评测
 
@@ -427,6 +395,7 @@ CFGPT2的评测结果如下所示。
 CFGPT的研发过程参考了以下开源项目。我们向这些项目的研究者表示感谢。
 
 - InternLM: https://github.com/InternLM/InternLM
+- Qwen: https://github.com/QwenLM/Qwen
 - Firefly: https://github.com/yangjianxin1/Firefly
 - FinGPT: https://github.com/AI4Finance-Foundation/FinGPT
 
@@ -437,7 +406,7 @@ CFGPT的研发过程参考了以下开源项目。我们向这些项目的研究
 - [ ] 持续性改进CFGPT在更多复杂金融任务上的能力
 
 # 使用许可
-CFGPT的代码遵循Apache许可证2.0协议。CFGPT的模型免费开源，商用许可遵循开源基础模型InternLM 7B和20B的许可协议和OpenAI生成数据的使用条款。如果您发现任何潜在的风险行为，请与我们联系。
+CFGPT的代码遵循Apache许可证2.0协议。已开源模型的使用许可需同时遵循对应基座模型许可证和训练数据使用条款。CFGPT1/CFGPT2 相关模型遵循 InternLM / InternLM2 等基础模型的许可要求；CFGPT3 基于 Qwen3 训练，当前 CFGPT3-8B 与 CFGPT3-32B 模型权重暂未开源。如您发现任何潜在的风险行为，请与我们联系。
 
 ### 感谢我们的贡献者 :
 <a href="https://github.com/TongjiFinLab/CFGPT/graphs/contributors">

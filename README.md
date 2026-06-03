@@ -3,74 +3,80 @@
 <h2>📈 CFGPT: Chinese Financial Assistant with Large Language Model</h2>
 </div>
 
-
-<a href='https://arxiv.org/abs/2309.10654'><img src='https://img.shields.io/badge/Paper-ArXiv-C71585'></a> 
-<a href='https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-CFGPT(pt)-red'></a> 
-<a href='https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-CFGPT(sft%20LoRA)-red'></a> 
-<a href='https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-CFGPT(sft%20Full)-red'></a> 
+<a href='https://arxiv.org/abs/2309.10654'><img src='https://img.shields.io/badge/Paper-ArXiv-C71585'></a>
+<a href='https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-CFGPT(pt)-red'></a>
+<a href='https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-CFGPT(sft%20LoRA)-red'></a>
+<a href='https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging Face-CFGPT(sft%20Full)-red'></a>
 
 English | [简体中文](README-zh.md)
 
 # Introduction
 
-We introduce **CFGPT**, an open-source language model trained by firstly further pretraining general LLMs on collected and cleaned Chinese finance text data (CFData-pt), including financial domain-specific data (announcement, finance articles, finance exams, finance news, finance research papers) and general data (Wikipedia), and secondly fine-tuning with knowledge-intensive instruction tuning data (CFData-sft). 
-As for preliminary evaluation, we use CFBenchmark-Basic. 
-CFGPT outperforms the baselines on objective and subjective tasks compared to several baseline models with similar parameters. 
+**CFGPT** is a family of large language models for Chinese financial scenarios. We perform continual pretraining on collected and cleaned Chinese financial corpora (CFData-pt), and then conduct supervised fine-tuning with knowledge-intensive financial instruction data (CFData-sft), enabling general-purpose LLMs to obtain stronger capabilities in financial text understanding, financial information extraction, financial generation, and risk analysis.
 
-- We develop CFGPT2 (7B&20B) based on [InternLM](https://github.com/InternLM/InternLM), which also integrates modules for retrieval enhancement, fact verification, compliance checking, and risk monitoring. While enhancing the real-time performance and accuracy of financial large model services, it effectively monitors and controls financial risks.
-  - [CFGPT2-7B](https://huggingface.co/TongjiFinLab/CFGPT2-7B): Further pretraining and supervised fine-tuning InternLM2 on our dataset and outperforms the baselines on several financial task.
- 
-- We release CFGPT1 (7B) in three parts:
-  - [Pretrained Model](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): Full model weights after further pretraining with the chinese finance text corpus to comply with the InternLM model license. 
-  - [Supervised Finetuned Model (Lora)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): Adapter model weights trained by PEFT (LoRA).
-  - [Supervised Finetuned Model (Full)](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full): Full model trained weights based on the pretrained model.
+CFGPT currently includes three major versions:
 
-- We release the [CFBenchmark](https://github.com/TongjiFinLab/CFBenchmark), a Chinese financial assistant benhmark for large language model. The basic version of CFBenchmark includes 3917 financial texts spanning three aspects and eight tasks, for the evaluation of the financial text processing capability of LLMs in Chinese financial market.
+| Version | Size | Base Model | Status |
+| - | - | - | - |
+| CFGPT1 | 7B | InternLM 7B | Part of the model weights have been open-sourced |
+| CFGPT2 | 7B & 20B | InternLM2 7B & 20B | Related models and evaluation results have been released |
+| CFGPT3 | 8B & 32B | Qwen3 8B & 32B | Training code has been added; model weights are not open-sourced yet |
 
-- We release the code of further pretrain and instruction tuning of CFGPT.
+- **CFGPT1** is based on InternLM 7B and includes a continual-pretrained model, a LoRA supervised fine-tuned model, and a full-parameter supervised fine-tuned model:
+  - [CFGPT1-pt-7B](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B): model weights after continual pretraining on Chinese financial corpora.
+  - [CFGPT1-sft-7B-LoRA](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA): LoRA adapter weights trained based on CFGPT1-pt-7B.
+  - [CFGPT1-sft-7B-Full](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full): full-parameter SFT weights trained based on CFGPT1-pt-7B.
+- **CFGPT2** is based on [InternLM2](https://github.com/InternLM/InternLM), covering both 7B and 20B scales. It integrates modules such as retrieval augmentation, fact checking, compliance checking, and risk monitoring, and achieves strong performance on multiple financial tasks.
+  - [CFGPT2-7B](https://huggingface.co/TongjiFinLab/CFGPT2-7B)
+  - [CFGPT2-20B](https://huggingface.co/TongjiFinLab/CFGPT2-20B)
+- **CFGPT3** is based on [Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) and [Qwen3-32B](https://huggingface.co/Qwen/Qwen3-32B). It follows the training route of "financial continual pretraining + financial supervised fine-tuning" and expands the continual-pretraining data. The repository currently includes training and evaluation code for CFGPT3-8B; the model weights of CFGPT3-8B and CFGPT3-32B are not open-sourced yet.
 
-- We further provide several samples about our CFData-sft.
+We also released [CFBenchmark](https://github.com/TongjiFinLab/CFBenchmark), which is used to evaluate the text-processing capability of large language models in the Chinese financial market. This repository keeps CFGPT training code, evaluation code, CFData samples, and typical application cases, making it easier for researchers to reproduce the training pipeline and understand the data format.
 
-***The following is the overview of training CFGPT:***
+***The following figure provides an overview of the CFGPT training pipeline:***
 
 <div align="center">
 <img align="center" src=./figs/CFGPT-TRAIN.svg width="100%"/>
 </div>
 
-
-# Content
+# Contents
 
 - [Quick Start](#quick-start)
-- [User Cases](#user-cases)
+- [Use Cases](#use-cases)
 - [Data](#data)
 - [Code](#code)
 - [Evaluation](#evaluation)
 - [Acknowledgements](#acknowledgements)
 - [To-Do List](#to-do-list)
 - [License](#license)
-- [Citation](#citation-arxiv)
+- [Citation](#citation)
 
 # Quick Start
 
-**1. Prepare the code and the environment**
+**1. Prepare the code and environment**
 
-Clone our repository, create a Python environment, and activate it via the following command
+Clone the repository, create a Python environment, and activate it:
 
 ```bash
 git clone https://github.com/TongjiFinLab/CFGPT.git
 cd CFGPT
-conda create -n env_name python=3.10   
-source activate env_name 
+conda create -n env_name python=3.10
+source activate env_name
 pip install -r requirements.txt
 ```
 
-**2. Prepare the pretrained CFGPT1**
+**2. Select a model version**
 
-The CFGPT1 consists of three parts: a pretrain model, continued pretraining InternLM-7B on our CFData-pt, an adapter model (trained via PEFT on our CFData-sft), and a Full-finetuned model trained base on the pretrain model.
+The currently open-sourced models are mainly from the CFGPT1 series. CFGPT3-8B and CFGPT3-32B are currently at the stage where training and evaluation code is released, while model weights are not open-sourced yet.
 
-|                        Pretrain model                        |                        Adapter model                         |                        Full SFT Model                        |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [CFGPT1-pt-7B](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B) | [CFGPT1-sft-7B-lora](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA) | [CFGPT1-sft-7B-full](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full) |
+| Model | Type | Link |
+| - | - | - |
+| CFGPT1-pt-7B | Continual-pretrained model | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT1-pt-7B) |
+| CFGPT1-sft-7B-LoRA | LoRA supervised fine-tuned model | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-LoRA) |
+| CFGPT1-sft-7B-Full | Full-parameter supervised fine-tuned model | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT1-sft-7B-Full) |
+| CFGPT2-7B | Supervised fine-tuned model | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT2-7B) |
+| CFGPT2-20B | Supervised fine-tuned model | [Hugging Face](https://huggingface.co/TongjiFinLab/CFGPT2-20B) |
+| CFGPT3-8B / CFGPT3-32B | Qwen3-based financial models | Not open-sourced yet |
 
 **3. Use CFGPT1-sft-7B-LoRA**
 
@@ -117,241 +123,196 @@ pred = model.generate(**inputs, max_new_tokens=64, do_sample=False, repetition_p
 print(tokenizer.decode(pred.cpu()[0], skip_special_tokens=True).split('回答：')[1])
 ```
 
-- **More detail are in `./code/test`**
+- **More usage details are available in `./code/test`**
 
-# User Cases
+**5. Train CFGPT3-8B**
 
-- [CFGPT-v2-7B User Cases about Banking](cases/case_bank.md)
-- [CFGPT-v2-7B User Cases about Algorithm Trading](cases/case_algor_trading.md)
-- [CFGPT-v2-7B User Cases about Primary Industry](cases/case_primary_industry.md)
-- [CFGPT-v1-7B Dataset Cases](cases/case_CFGPTv1.md)
+The CFGPT3-8B code includes continual pretraining and full-parameter supervised fine-tuning. Before running it, please update model paths, data paths, cache paths, and GPU/DeepSpeed configurations according to your local environment.
+
+```bash
+# Data processing and training for continual pretraining
+cd code/train/Qwen3-8B/pretrain
+python process_data.py
+bash start.sh
+
+# Supervised fine-tuning
+cd ../full-sft
+bash start.sh
+```
+
+# Use Cases
+
+- [CFGPT-v2-7B Banking Use Case](cases/case_bank.md)
+- [CFGPT-v2-7B Algorithmic Trading Use Case](cases/case_algor_trading.md)
+- [CFGPT-v2-7B Primary Industry Use Case](cases/case_primary_industry.md)
+- [CFGPT-v1-7B Dataset Case](cases/case_CFGPTv1.md)
 
 # Data
 
-In this repo, we share the samples of CFData:
+In this repository, we share samples of CFData:
 
 - CFData: `./data`
 
-  The CFData comprising both a pre-training dataset and a supervised fine-tuning dataset, where the pre-training dataset collates Chinese financial data and analytics, alongside a smaller subset of general-purpose text with 584M documents and 141B tokens in total, and the supervised finetuning dataset is tailored for six distinct financial tasks, embodying various facets of financial analysis and decisionmaking with 1.5M instruction pairs and 1.5B tokens in total.
+    CFData includes a pretraining dataset (CFData-pt) and a supervised fine-tuning dataset (CFData-sft). The pretraining dataset contains Chinese financial data and analytics, together with a smaller subset of general-purpose text, totaling 584 million documents and 141 billion tokens. The supervised fine-tuning dataset is designed for six different financial tasks, covering multiple aspects of financial analysis and decision-making, with 1.5 million instruction pairs and 1.5 billion tokens in total.
 
+## Continual Pretraining
 
-## Further pretrain
+### CPT for CFGPT1 & CFGPT2
 
-The pre-training dataset consists of 591 million documents and 193 billion tokens, including six sub-datasets
+The pretraining dataset contains 591 million documents and 193 billion tokens, including six sub-datasets:
 
-* CFData-CP (6.24%): 39 thousand corporate prospectus with 13 billion tokens;
-* CFData-CA (12.28%): 6 million corporate announcements with 17 billion tokens; 
-* CFData-RR (2.51% ): 392 thousand research reports with 3 billion tokens; 
-* CFData-FN (18.70%): 82 million financial news with 26 billion tokens; 
-* CFData-SM (60.15%): 495 million social medias and 84 billion tokens; 
-* CFData-Wiki (0.09%): 255 thousand Wikipedia content with 137 million tokens.
+* CFData-CP (6.24%): 39 thousand corporate prospectuses with 13 billion tokens;
+* CFData-CA (12.28%): 6 million corporate announcements with 17 billion tokens;
+* CFData-RR (2.51%): 392 thousand research reports with 3 billion tokens;
+* CFData-FN (18.70%): 82 million financial news articles with 26 billion tokens;
+* CFData-SM (60.15%): 495 million social media records with 84 billion tokens;
+* CFData-Wiki (0.09%): 255 thousand Wikipedia entries with 137 million tokens.
 
-We sample a financial text sub-corpus from CFData-pt for further pretraining on InternLM-7B consists of 13.7 billion tokens from a large amount of Chinese financial data and analytics and a small amount of general-purpose text, such as announcements, research reports, social media content, financial news articles, and Wikipedia. And they were mainly collected by ourselves.
+We sampled a financial text sub-corpus from CFData-pt for further pretraining on InternLM-7B. This sub-corpus contains about 13.7 billion tokens from a large amount of Chinese financial data and analytics, along with a small amount of general-purpose text, including announcements, research reports, social media content, financial news articles, and Wikipedia. These data were mainly collected by ourselves.
 
-## Supervised Finetuning
+### CPT for CFGPT3
 
-The supervised fine-tuning dataset consist 1.6 million instructions pairs and 1.5 billion tokens, including six financial tasks: 
+For CFGPT3 training, we added a portion of new data. The details are as follows:
 
-* CFData-SA (5.69% ): 120 thousand instances with 86 million tokens for sentiment analysis; 
-* CFData-RS (50.60%): 369 thousand instances and 765 million tokens for report summary; 
-* CFData-ED (22.69% ): 490 thousand instances with 343 million tokens for event detection; 
-* CFData-TD (12.37%): 369 thousand instances and 187 million tokens for topic decomposition; 
-* CFData-QA (0.39%): 12 thousand instances and 6 million tokens for question-answering; 
-* CFData-SP (8.27%): 212 thousand instances and 125 million tokens for stock moving prediction.
+* Financial (70.17%)
+    * news_rp_origin_text (21.73%)
+    * fin_news_2022 (20.95%)
+    * fin_announcement (13.61%)
+    * fin_articles (6.91%)
+    * fin_news_2025 (6.33%)
+    * fin_books (0.36%)
+    * fin_exam (0.26%)
+    * fin_reports (0.01%)
+* General (29.83%)
+    * CLUECorpusSmall (18.76%)
+    * UNv1-0 (3.15%)
+    * ParaCrawl-v9 (1.86%)
+    * zhwiki_2023 (1.84%)
+    * news-crawl (1.64%)
+    * csl (1.26%)
+    * translation2019zh (0.83%)
+    * WikiMatrix (0.43%)
+    * news-commentary (0.05%)
 
-We employ high-quality domain specific data to achieve finance domain adaptation during supervised finetuing. The dataset includes six financial datasets to reflect different aspects of financial analysis and decision-making, which include sentiment analysis, event detection, report summarization, topic decomposition, question answering, and stock movement prediction. 
-CFData-sft provides much text information in the financial domain, allowing a FinLLM to learn from different of sources.
-Considering requirement in reality, we reform these financial supervised finetuning dataset into ten tasks.
+The total amount is about 28.4 billion tokens. The continual pretraining of the CFGPT3 system models uses all of these data. These data mainly include financial data such as news, announcements, research reports, financial articles, professional books, financial exams, and financial reports. In addition, a small portion of general corpora is also included. All of the above data were collected by ourselves.
+
+## Supervised Fine-Tuning
+
+The supervised fine-tuning dataset contains 1.6 million instruction pairs and 1.5 billion tokens, including six financial tasks:
+
+* CFData-SA (5.69%): 120 thousand instances with 86 million tokens for sentiment analysis;
+* CFData-RS (50.60%): 369 thousand instances with 765 million tokens for report summarization;
+* CFData-ED (22.69%): 490 thousand instances with 343 million tokens for event detection;
+* CFData-TD (12.37%): 369 thousand instances with 187 million tokens for topic decomposition;
+* CFData-QA (0.39%): 12 thousand instances with 6 million tokens for question answering;
+* CFData-SP (8.27%): 212 thousand instances with 125 million tokens for stock movement prediction.
+
+We use high-quality domain-specific data to achieve financial domain adaptation through supervised fine-tuning. The dataset includes six financial datasets that reflect different aspects of financial analysis and decision-making, including sentiment analysis, event detection, report summarization, topic decomposition, question answering, and stock movement prediction.
+
+CFData-sft provides a large amount of financial-domain text information, allowing FinLLMs to learn from different sources.
+
+Considering practical requirements, we reorganized these financial supervised fine-tuning datasets into ten tasks.
 
 The details are as follows:
 
-| Task       | Task Description                                             | Dataset   | Size |
-| ---------- | ------------------------------------------------------------ | --------- | ---- |
-| Sentiment  | Identify the sentiment associated with financial document    | CFData-SA | 13K  |
-| Summary    | Generate a content summary based on the provided financial document | CFData-RS | 18K  |
-| Risk       | Generate risk alerts based on the provided financial document | CFData-RS | 20K  |
-| Suggestion | Generate investment recommendations based on the provided financial document | CFData-RS | 18K  |
-| Event      | Identify the event categories associated with financial document | CFData-ED | 12K  |
-| Industry   | Identify the industry categories associated with financial document | CFData-ED | 14K  |
-| Company    | Identify the company names associated with financial document | CFData-ED | 12K  |
-| Product    | Identify the product names associated with financial document | CFData-ED | 21K  |
-| Exam       | Answer true-false questions related to finance question      | CFData-QA | 16K  |
-| Stock      | Predict stocks future movement                               | CFData-SP | 15K  |
+| Task | Task Description | Dataset | Size |
+| - | - | - | - |
+| Sentiment | Identify sentiment associated with financial documents | CFData-SA | 13K |
+| Summary | Generate a content summary based on the provided financial document | CFData-RS | 18K |
+| Risk | Generate risk alerts based on the provided financial document | CFData-RS | 20K |
+| Suggestion | Generate investment recommendations based on the provided financial document | CFData-RS | 18K |
+| Event | Identify event categories associated with financial documents | CFData-ED | 12K |
+| Industry | Identify industry categories associated with financial documents | CFData-ED | 14K |
+| Company | Identify company names associated with financial documents | CFData-ED | 12K |
+| Product | Identify product names associated with financial documents | CFData-ED | 21K |
+| Exam | Answer true-false questions related to finance | CFData-QA | 16K |
+| Stock | Predict future stock movement | CFData-SP | 15K |
 
-
-The researchers could read the sample case of [CFData](./data)
+For more information about CFData, researchers can refer to the sample records in [CFData](./data).
 
 # Code
 
-## Further Pretrain
+This repository keeps the key training and evaluation code for CFGPT. Overall, the CFGPT training pipeline includes data preprocessing, continual pretraining, supervised fine-tuning, model generation testing, and downstream evaluation. Different versions correspond to different base models and script directories. For detailed parameters, please refer to the `.py`, `.sh`, `.yml`, and `ds_config.json` files in the corresponding directories.
 
-The training script is **`./code/train/pretrain`**
+## Code Structure
+
+```text
+code/
+├── train/
+│   ├── InternLM/
+│   │   └── pretrain/          # Continual pretraining code for CFGPT1/2 InternLM-series models
+│   └── Qwen3-8B/
+│       ├── pretrain/          # Continual pretraining and data processing code for CFGPT3-8B
+│       └── full-sft/          # Full-parameter supervised fine-tuning code for CFGPT3-8B
+├── test/
+│   └── eval-generate.py       # Generation test example
+└── utils/                     # Common components for data processing, loss, and trainer
+```
+
+## Continual Pretraining
+
+Continual pretraining is used to adapt general-purpose base models to Chinese financial corpora. This stage mainly includes tokenization, long-text packing, dataset saving, and distributed training.
+
+InternLM-series training code is located at:
 
 ```bash
-deepspeed --include localhost:0,1,2,3,4,5,6,7 --master_port 60002 bf_16_parallel_train.py --config bf_16_parallel_train.yml > bf_16_parallel_train.log 2>&1
+code/train/InternLM/pretrain
 ```
 
-<!-- ![loss curve](https://big-cheng.com/k2/loss_curve.png) -->
+CFGPT3-8B training code is located at:
 
-<div align="center">
-<img align="center" src=./figs/CFGPT-Training-loss.svg width="100%"/>
-</div>
-
-
-The trainer parameters we use are in **`./code/train/pretrain/bf_16_parallel_train.yml`**: 
-
-```
-# basic setting
-model_name: path/of/your/further/pretrain/model
-dataset: path/to/your/further/pretrain/dataset
-deepspeed: ./ds_config.json
-seed: 42
-max_seq_length: 2048
-
-# train setting 
-output_dir: ./bf_16_parallel_train
-logging_steps: 10
-num_train_epochs: 1
-per_device_train_batch_size: 2
-gradient_accumulation_steps: 16
-learning_rate: 2.0e-4
-weight_decay: 0.01
-warmup_steps: 1000
-save_steps: 1000
-fp16: 0
-bf16: 1
-torch_compile: 0
-save_strategy: steps
-remove_unused_columns: 0
+```bash
+code/train/Qwen3-8B/pretrain
 ```
 
-The deepspeed parameters we use are in **`./code/train/pretrain/ds_config.json`**: 
+Taking CFGPT3-8B as an example, the running process is as follows:
 
-```
-{
-    "gradient_accumulation_steps": "auto",
-    "gradient_clipping": "auto",
-    "train_batch_size": "auto",
-    "train_micro_batch_size_per_gpu": "auto",
-    "wall_clock_breakdown": false,
-    "optimizer": {
-        "type": "AdamW",
-        "params": {
-          "lr": "auto",
-          "betas": "auto",
-          "eps": "auto",
-          "weight_decay": 0.01
-          }
-        },
-     "scheduler": {
-        "type": "WarmupDecayLR",
-        "params": {
-            "total_num_steps": "auto",
-            "warmup_min_lr": "auto",
-            "warmup_max_lr": "auto",
-            "warmup_num_steps": "auto"
-        }
-    },
-    "bf16": {
-        "enabled": true
-    },
-    "zero_optimization": {
-        "stage": 1,
-        "reduce_bucket_size": 5e8
-    }
-}
+```bash
+cd code/train/Qwen3-8B/pretrain
+python process_data.py
+bash start.sh
 ```
 
-## Supervised Finetuning
+Here, `process_data.py` processes raw jsonl text into 2048-token training blocks, `qwen3_8b_pt_train.py` performs continual pretraining, and `start.sh` configures environment variables and launches distributed training. Before running, please update model paths, data paths, cache paths, CUDA paths, and the number of GPUs according to your local environment.
 
-The training script is in **`./code/train/lora`**. Here we use the lora-bf16 as illustrations.
+## Supervised Fine-Tuning
+
+Supervised fine-tuning further improves the model's performance on financial question answering, financial information extraction, report summarization, risk alerts, investment suggestions, and other instruction-following tasks.
+
+The original CFGPT1 version includes both LoRA SFT and full-parameter SFT. Here we use lora-bf16 as an example. The training script is located under `./code/train/lora`:
 
 ```bash
 deepspeed --include localhost:6,7 --master_port 60005 lora_bf_16_parallel_train.py --config lora_bf_16_parallel_train.yml > lora_bf_16_parallel_train.log 2>&1
 ```
 
-The trainer parameters we use are in **`./code/train/lora/bf16/bf_16_parallel_train.yml`**: 
+CFGPT3-8B currently provides full-parameter SFT training code:
 
-```
-# basic setting
-model_name: path/of/your/supervised/finetuning/model
-dataset: path/to/your/supervised/finetuning/dataset
-dataset_eval: path/to/your/evaluate/dataset
-deepspeed: ./ds_config.json
-seed: 42
-max_seq_length: 2048
-
-# train setting 
-output_dir: ./lora_bf_16_parallel_train
-num_train_epochs: 1
-per_device_train_batch_size: 8
-per_device_eval_batch_size: 8
-gradient_accumulation_steps: 1
-learning_rate: 2.0e-4
-weight_decay: 0.01
-warmup_steps: 500
-fp16: 0
-bf16: 1
-torch_compile: 0
-save_strategy: steps
-save_steps: 500
-evaluation_strategy: steps
-eval_steps: 100
-logging_steps: 10
-remove_unused_columns: 0
-
-# lora setting
-rank: 64
-lora_alpha: 16
-lora_dropout: 0.05
-target_modules: ['k_proj', 'o_proj', 'down_proj', 'v_proj', 'q_proj', 'gate_proj', 'up_proj']
-bias: 'none'
-
-# restart info
-resume_from_checkpoint: null
+```bash
+code/train/Qwen3-8B/full-sft
 ```
 
-The deepspeed parameters we use are in **`./code/train/lora/bf16/ds_config.json`**: 
+Running example:
 
+```bash
+cd code/train/Qwen3-8B/full-sft
+bash start.sh
 ```
-{
-    "gradient_accumulation_steps": "auto",
-    "gradient_clipping": "auto",
-    "steps_per_print": 2000,
-    "train_batch_size": "auto",
-    "train_micro_batch_size_per_gpu": "auto",
-    "wall_clock_breakdown": false,
 
-    "optimizer": {
-      "type": "AdamW",
-      "params": {
-        "lr": "auto",
-        "betas": "auto",
-        "eps": "auto",
-        "weight_decay": "auto"
-        }
-      
-      },
-    "scheduler": {
-        "type": "WarmupLR",
-        "params": {
-            "warmup_min_lr": "auto",
-            "warmup_max_lr": "auto",
-            "warmup_num_steps": "auto"
-        }
-    },
-    "bf16": {
-      "enabled": true
-    },
-    "zero_optimization": {
-        "stage": 0
-    }
-}
+Here, `qwen3_8b_sft.py` loads the continual-pretrained model, constructs ChatML-format training text, and launches SFT training. Training data paths, evaluation data paths, DeepSpeed configuration paths, and output paths should be modified according to the actual machine environment.
+
+## Generation Test
+
+The generation test script is located at:
+
+```bash
+code/test/eval-generate.py
 ```
+
+This script is used to quickly check the model's generation quality on financial tasks. Model loading paths and inference parameters can be modified in the script.
 
 # Evaluation
 
-The performance of our CFGPT2 (13B) is shown as follows:
+The evaluation results of CFGPT2 are shown below.
 
 ## C-Eval
 
@@ -373,22 +334,23 @@ The performance of our CFGPT2 (13B) is shown as follows:
 
 ## FinEval
 
-| Model              | Size | Finance | Economy | Accounting | Certificate | Average | 
+| Model              | Size | Finance | Economy | Accounting | Certificate | Average |
 | ------------------ | ---- | ------- | ------  | -----      | ---------   | ---     |
-| GPT-4              | -    | **71.0**| **74.5**| **59.3**   | **70.4**    | **68.6**| 
-| ChatGPT            | 175B | 59.3    | 61.6    | 45.2       | 55.1        | 55.0    | 
-| InternLM-7B        | 7B   | 49.0    | 49.2    | 40.5       | 49.4        | 47.1    | 
-| ChatGLM2-6B        | 6B   | 46.5    | 46.4    | 44.5       | 51.5        | 47.4    | 
-| Qwen-Chat-7B       | 7B   | 51.5    | 52.1    | 44.5       | 53.6        | 50.5    | 
-| Qwen-7B            | 7B   | 54.5    | 54.4    | 50.3       | 55.8        | 53.8    | 
-| Baichuan-7B-Chat   | 7B   | 44.9    | 41.5    | 34.9       | 45.6        | 42.0    | 
-| Baichuan-13B-Chat  | 13B  | 51.6    | 51.1    | 41.7       | 52.8        | 49.4    | 
+| GPT-4              | -    | **71.0**| **74.5**| **59.3**   | **70.4**    | **68.6**|
+| ChatGPT            | 175B | 59.3    | 61.6    | 45.2       | 55.1        | 55.0    |
+| InternLM-7B        | 7B   | 49.0    | 49.2    | 40.5       | 49.4        | 47.1    |
+| ChatGLM2-6B        | 6B   | 46.5    | 46.4    | 44.5       | 51.5        | 47.4    |
+| Qwen-Chat-7B       | 7B   | 51.5    | 52.1    | 44.5       | 53.6        | 50.5    |
+| Qwen-7B            | 7B   | 54.5    | 54.4    | 50.3       | 55.8        | 53.8    |
+| Baichuan-7B-Chat   | 7B   | 44.9    | 41.5    | 34.9       | 45.6        | 42.0    |
+| Baichuan-13B-Chat  | 13B  | 51.6    | 51.1    | 41.7       | 52.8        | 49.4    |
 | InternLM2-7B       | 7B   | 54.2    | 54.0    | 43.5       | 55.4        | 51.9    |
 | InternLM2-20B      | 20B  | 57.3    | 58.9    | 47.4       | 58.6        | 55.5    |
 | CFGPT2-7B          | 7B   | 62.6    | 63.9    | 58.9       | 66.0        | 62.9    |
 | CFGPT2-20B         | 20B  | 64.0    | 64.9    | 62.1       | 67.9        | 64.8    |
 
 ## CFBenchmark-Basic
+
 | Model              | Size | Company   | Product   | R.Avg     | Sector    | Event     | Sentiment | C.Avg     | Summary   | Risk      | Suggestion | G.Avg     | Avg       |
 | ------------------ | ---- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------- | --------- | --------- |
 | HUMAN              | -    | 0.931     | 0.744     | 0.838     | 0.975     | 0.939     | 0.912     | 0.942     | 1.000     | 1.000     | 1.000      | 1.000     | 0.927     |
@@ -419,16 +381,16 @@ The performance of our CFGPT2 (13B) is shown as follows:
 
 ## OpenFinData
 
-| Model              | Size | Knowledge | Caluation | Explanation | Identification | Analysis | Compliance | Average | 
+| Model              | Size | Knowledge | Caluation | Explanation | Identification | Analysis | Compliance | Average |
 | ------------------ | ---- | -------   | ------    | -----       | ---------      | -----    | -------    | -----   |
-| ERNIE-Bot-3.5      | -    | 78.0      | 70.4      | 82.1        | 75.3           | 77.7     | 36.7       | 70.0    | 
-| ERNIE-Bot-4        | -    | **87.3**  | **73.6**  | **84.3**    | **77.0**       | **79.1** | 37.3       |**73.1** | 
-| InternLM-7B        | 7B   | 65.3      | 45.8      | 71.4        | 62.5           | 59.2     | 37.2       | 56.9    | 
-| ChatGLM2-6B        | 6B   | 62.4      | 37.2      | 70.8        | 59.2           | 58.3     | 38.7       | 54.4    | 
-| Qwen-Chat-7B       | 7B   | 71.3      | 40.5      | 71.4        | 58.6           | 51.3     | 40.0       | 55.5    | 
-| Qwen-Chat-14B      | 14B  | 78.0      | 57.6      | 75.6        | 71.6           | 59.3     | 40.6       | 63.8    | 
-| Baichuan2-7B-Chat  | 7B   | 46.2      | 37.0      | 76.5        | 60.2           | 55.0     | 28.7       | 50.6    | 
-| Baichuan2-13B-Chat | 13B  | 69.3      | 39.5      | 75.3        | 65.7           | 62.0     | 31.3       | 57.2    | 
+| ERNIE-Bot-3.5      | -    | 78.0      | 70.4      | 82.1        | 75.3           | 77.7     | 36.7       | 70.0    |
+| ERNIE-Bot-4        | -    | **87.3**  | **73.6**  | **84.3**    | **77.0**       | **79.1** | 37.3       |**73.1** |
+| InternLM-7B        | 7B   | 65.3      | 45.8      | 71.4        | 62.5           | 59.2     | 37.2       | 56.9    |
+| ChatGLM2-6B        | 6B   | 62.4      | 37.2      | 70.8        | 59.2           | 58.3     | 38.7       | 54.4    |
+| Qwen-Chat-7B       | 7B   | 71.3      | 40.5      | 71.4        | 58.6           | 51.3     | 40.0       | 55.5    |
+| Qwen-Chat-14B      | 14B  | 78.0      | 57.6      | 75.6        | 71.6           | 59.3     | 40.6       | 63.8    |
+| Baichuan2-7B-Chat  | 7B   | 46.2      | 37.0      | 76.5        | 60.2           | 55.0     | 28.7       | 50.6    |
+| Baichuan2-13B-Chat | 13B  | 69.3      | 39.5      | 75.3        | 65.7           | 62.0     | 31.3       | 57.2    |
 | InternLM2-7B       | 7B   | 70.2      | 39.9      | 73.4        | 62.8           | 61.4     | 39.5       | 57.8    |
 | InternLM2-20B      | 20B  | 76.4      | 52.6      | 76.3        | 66.2           | 63.9     | 42.1       | 62.9    |
 | CFGPT2-7B          | 7B   | 81.9      | 62.8      | 75.2        | 71.3           | 64.1     | 68.2       | 70.5    |
@@ -436,30 +398,32 @@ The performance of our CFGPT2 (13B) is shown as follows:
 
 # Acknowledgements
 
-CFGPT has referred to the following open-source projects. We want to express our gratitude to the researchers of the projects.
+CFGPT refers to the following open-source projects during development. We thank the researchers and developers of these projects.
 
 - InternLM: https://github.com/InternLM/InternLM
+- Qwen: https://github.com/QwenLM/Qwen
 - Firefly: https://github.com/yangjianxin1/Firefly
 - FinGPT: https://github.com/AI4Finance-Foundation/FinGPT
 
 # To-Do List
 
-- [ ] Series of applications with CFGPT.
-- [ ] Constructing more comprehensive training tasks and their corresponding databases.
-- [ ] Continued improvement of the capabilities of CFGPT in more complex financial tasks.
+- [ ] Build downstream applications with CFGPT, such as CFAPP.
+- [ ] Construct more comprehensive training tasks and corresponding datasets.
+- [ ] Continuously improve CFGPT's capabilities on more complex financial tasks.
 
 # License
 
-The use of the source code of CFGPT complies with the Apache 2.0 License.  CFGPT model also supports commercial use under the base model Licenses of InternLM 7B&20B Model and the Terms of Use of the data generated by OpenAI. Please contact us if you find any potential violations. 
+The code of CFGPT follows the Apache License 2.0. The use of open-sourced models should also comply with the licenses of the corresponding base models and the usage terms of the training data. CFGPT1/CFGPT2 models follow the license requirements of base models such as InternLM / InternLM2. CFGPT3 is trained based on Qwen3, and the model weights of CFGPT3-8B and CFGPT3-32B are not open-sourced yet. If you find any potential risk or violation, please contact us.
 
-### Thanks To Our Contributors :
+### Thanks To Our Contributors:
+
 <a href="https://github.com/TongjiFinLab/CFGPT/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=TongjiFinLab/CFGPT" />
 </a>
 
-### Citation
+# Citation
 
-If you find **CFGPT** is useful for your research, please consider citing the following papers.
+If you find **CFGPT** useful for your research, please cite the following papers:
 
 ```
 @article{li2023cfgpt,
