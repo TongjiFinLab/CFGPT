@@ -230,6 +230,17 @@ The details are as follows:
 
 For more information about CFData, researchers can refer to the sample records in [CFData](./data).
 
+### SFT for CFGPT3
+
+For the supervised fine-tuning of CFGPT3, we added a batch of new training data:
+
+* Financial professional knowledge QA (about 250 thousand instances);
+* Financial business understanding and analysis (about 12 thousand instances);
+* Financial fact reasoning and calculation (about 88 thousand instances);
+* Financial compliance and risk control (about 22 thousand instances).
+
+In total, there are about 370 thousand instruction pairs.
+
 # Code
 
 This repository keeps the key training and evaluation code for CFGPT. Overall, the CFGPT training pipeline includes data preprocessing, continual pretraining, supervised fine-tuning, model generation testing, and downstream evaluation. Different versions correspond to different base models and script directories. For detailed parameters, please refer to the `.py`, `.sh`, `.yml`, and `ds_config.json` files in the corresponding directories.
@@ -243,6 +254,7 @@ code/
 │   │   └── pretrain/          # Continual pretraining code for CFGPT1/2 InternLM-series models
 │   └── Qwen3-8B/
 │       ├── pretrain/          # Continual pretraining and data processing code for CFGPT3-8B
+│       ├── lora-sft/          # LoRA supervised fine-tuning code for CFGPT3-8B
 │       └── full-sft/          # Full-parameter supervised fine-tuning code for CFGPT3-8B
 ├── test/
 │   └── eval-generate.py       # Generation test example
