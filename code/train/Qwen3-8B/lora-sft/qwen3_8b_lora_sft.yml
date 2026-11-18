@@ -1,0 +1,45 @@
+# Qwen3-8B LoRA SFT
+# 训练数据暂不公开。jsonl 每行一种即可：
+#   {"conversations": [{"from": "human", "value": "..."}, {"from": "chatbot", "value": "..."}]}
+#   {"messages": [{"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]}
+
+model_name_or_path: Qwen/Qwen3-8B
+train_file: path/to/fin_sft.jsonl
+output_dir: ./output/qwen3-8b-lora-sft
+trust_remote_code: true
+
+# 与 qwen3_nothink 相同的 ChatML：不插入 think 块，只学习回答
+cutoff_len: 4096
+packing: false
+enable_thinking: false
+
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+weight_decay: 0.0
+num_train_epochs: 1.0
+lr_scheduler_type: cosine_with_min_lr
+min_lr_rate: 0.1
+warmup_ratio: 0.03
+bf16: true
+gradient_checkpointing: true
+logging_steps: 10
+save_strategy: steps
+save_steps: 1000
+save_total_limit: 8
+seed: 42
+dataloader_num_workers: 2
+preprocessing_num_workers: 4
+resume: true
